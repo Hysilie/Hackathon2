@@ -1,11 +1,39 @@
-import Home from "./pages/Home";
 import "./index.css";
-
+import { Route, Routes } from "react-router-dom";
+import ForgottenPassword from "./pages/user/ForgottenPassword";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+import Error from "./pages/Error";
+import MyProfile from "./pages/user/MyProfile";
+import Home from "./pages/Home";
+import SearchResults from "./pages/user/SearchResults";
+import ResultDetails from "./pages/user/ResultDetails";
+import Dashboard from "./pages/admin/Dashboard";
+import AllVehicules from "./pages/admin/AllVehicules";
+import VehiculeProfile from "./pages/admin/VehiculeProfile";
+import AgencyProfile from "./pages/admin/AgencyProfile";
+import Navbar from "./components/Navbar";
+/* import { useCurrentUserContext } from "./contexts/UserContext";
+ */
 function App() {
-  return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Home />
+  /*   const { token } = useCurrentUserContext();
+   */ return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/cars" element={<SearchResults />} />
+        <Route path="/cars/:id" element={<ResultDetails />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/vehicles" element={<AllVehicules />} />
+        <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
+        <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/forgotten-password" element={<ForgottenPassword />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </div>
   );
 }
