@@ -58,12 +58,12 @@ function Navbar() {
       {showLoginOptions ? (
         <div className="text-right absolute right-0 z-20">
           <ul className="shadow-md rounded-lg py-2">
-            <Link to="/login">
+            <Link to="/login" onClick={showOptions}>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
                 Login
               </li>
             </Link>
-            <Link to="/registration">
+            <Link to="/registration" onClick={showOptions}>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
                 Register
               </li>
