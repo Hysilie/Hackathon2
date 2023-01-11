@@ -12,10 +12,11 @@ import Dashboard from "./pages/admin/Dashboard";
 import AllVehicules from "./pages/admin/AllVehicules";
 import VehiculeProfile from "./pages/admin/VehiculeProfile";
 import AgencyProfile from "./pages/admin/AgencyProfile";
-
+/* import { useCurrentUserContext } from "./contexts/UserContext";
+ */
 function App() {
-  // To be used later : const { token } = useCurrentUserContext();
-  return (
+  /*   const { token } = useCurrentUserContext();
+   */ return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />

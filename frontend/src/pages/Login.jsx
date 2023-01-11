@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import forestBackground from "../assets/forest-background.jpg";
+import { useCurrentUserContext } from "../contexts/UserContext";
 
 function Login() {
-  /*   const { setUser, setToken } = useCurrentUserContext();
-   */
+  const { setUser } = useCurrentUserContext({});
 
   const navigate = useNavigate();
 
-  const [/* email */ setEmail] = useState("");
-  const [/* password */ setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -22,7 +22,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    /*  const myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({ email, password });
@@ -37,12 +37,12 @@ function Login() {
       fetch("http://localhost:5000/login", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          setCurrentUser(result.user);
-          setToken(result.token);
+          localStorage.setItem("token", result.token);
+          setUser(result.user);
           navigate("/");
         })
         .catch(console.error);
-    } */
+    }
     /* "Entrez vos in formations de connexion" */
   };
 

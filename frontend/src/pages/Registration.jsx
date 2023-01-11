@@ -34,37 +34,41 @@ function Registration() {
   };
 
   const handleSubmit = (e) => {
-    if (
-      email === "" ||
-      password === "" ||
-      firstname === "" ||
-      lastname === "" ||
-      phone === ""
-    )
-      return;
-    /* 
+    e.preventDefault();
+    /* This is a header for the fetch */
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    const body = JSON.stringify({ ...registerInformations });
+    /* It's an object that will be sent in the body of request */
+    const bodyRaw = JSON.stringify({
+      firstname,
+      lastname,
+      email,
+      password,
+      phone,
+    });
 
-    const requestOptions = {
+    /* fetch to suscribe at makesense */
+    fetch("http://localhost:5000/register", {
       method: "POST",
       headers: myHeaders,
-      body,
+      body: bodyRaw,
       redirect: "follow",
-    }; */
-
-    e.preventDefault();
-    /* 
-    fetch("http://localhost:5000/api/users/register", requestOptions)
-      .then((response) => response.text())
-      .catch(console.error);
-
-    navigate("/login");
-  }; 
- */
+    })
+      .then((response) => {
+        if (response.ok) {
+          /* eslint-disable no-alert */
+          alert("Votre inscription à été prise en compte");
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.warn(error); /* 
+        alert("Vous êtes déjà inscrit");
+        navigate("/"); */
+      });
   };
+
   return (
     <section
       className="h-screen"
