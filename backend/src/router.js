@@ -19,7 +19,7 @@ const { verifyEmail } = require("./middlewares/verifyEmail");
 router.get("/user", userControllers.browse);
 router.get("/user/bytoken", verifyToken, userControllers.findByToken);
 router.get("/user/:id", verifyToken, userControllers.read);
-router.post("/user", verifyEmail, hashPassword, userControllers.add);
+router.post("/register", verifyEmail, hashPassword, userControllers.add);
 router.delete("/user/:id", userControllers.destroy);
 router.post(
   "/login",
