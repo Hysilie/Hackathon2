@@ -19,34 +19,45 @@ function Header() {
       <h1 className="text-white text-4xl drop-shadow-3xl font-semibold">
         MOVE WITH ELECTRIC
       </h1>
-      <div className="flex flex-row m-6">
-        <input type="text" placeholderText="City" />
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          disabledKeyboardNavigation
+      <div className="flex flex-row m-12">
+        <input
+          type="text"
+          placeholder="City"
+          className="rounded-l-lg h-[40px] px-2"
         />
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           disabledKeyboardNavigation
+          className="h-[40px] px-2 border-l-2"
         />
-        <button type="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 stroke-white bg-main-yellow"
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          disabledKeyboardNavigation
+          className="h-[40px] px-2 border-l-2"
+        />
+        <div>
+          <button
+            type="button"
+            className=" bg-main-yellow h-[40px] w-[40px] rounded-r-lg flex justify-center items-center"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 stroke-white "
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
