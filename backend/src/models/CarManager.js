@@ -5,7 +5,7 @@ class CarManager extends AbstractManager {
     super({ table: "car" });
   }
 
-  updateAvatar(id, carPhoto) {
+  updateCarPhoto(id, carPhoto) {
     return this.connection.query(
       `update ${this.table} set photo = ? where id = ?`,
       [carPhoto, id]

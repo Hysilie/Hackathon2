@@ -4,7 +4,6 @@ const updateCarPhoto = (req, res) => {
   const id = req.payload.sub;
   const { carPhoto } = req;
 
-  // SQL à faire !!! en attente de la table
   models.user
     .updateCarPhoto(id, carPhoto)
     .then(([result]) => {

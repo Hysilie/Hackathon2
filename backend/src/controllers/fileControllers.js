@@ -16,7 +16,7 @@ const renameCarPhoto = (req, res, next) => {
     (err) => {
       if (err) throw err;
       req.CarPhoto = `${uuid}-${originalname}`;
-      console.warn(req.avatar);
+      console.warn(req.CarPhoto);
       next();
     }
   );
