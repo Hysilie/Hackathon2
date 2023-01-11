@@ -2,14 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-const itemControllers = require("./controllers/itemControllers");
-
-router.get("/items", itemControllers.browse);
-router.get("/items/:id", itemControllers.read);
-router.put("/items/:id", itemControllers.edit);
-router.post("/items", itemControllers.add);
-router.delete("/items/:id", itemControllers.destroy);
-
 const authControllers = require("./controllers/authController");
 const userControllers = require("./controllers/userControllers");
 const {
@@ -19,6 +11,7 @@ const {
 } = require("./middlewares/auth");
 const { verifyEmail } = require("./middlewares/verifyEmail");
 
+// USER ROUTES
 router.get("/user", userControllers.browse);
 router.get("/user/:id", verifyToken, userControllers.read);
 router.post("/user", verifyEmail, hashPassword, userControllers.add);
@@ -28,5 +21,25 @@ router.post(
   authControllers.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
+
+const carControllers = require("./controllers/carControllers");
+
+// CAR ROUTES
+router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get("/totalCars", carControllers.browseAllCars);
+router.get(
+  "/totalCarsRentedByAgency/:id",
+  carControllers.browseCarRentedByAgency
+);
+router.get(
+  "/nonAvailableCarByAgency/:id",
+  carControllers.findNonAvailableCarByAgency
+);
+router.post("/newCar", carControllers.addNewCar);
+
+// RENTAL ROUTES
+const rentalControllers = require("./controllers/rentalControllers");
+
+router.get("/rental", rentalControllers.browse);
 
 module.exports = router;
