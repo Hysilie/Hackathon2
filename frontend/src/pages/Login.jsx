@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import /* useNavigate Link */ "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import forestBackground from "../assets/forest-background.jpg";
 
 function Login() {
   /*   const { setUser, setToken } = useCurrentUserContext();
    */
 
-  /* Import useNavigate to move after the login  */
-  /*  const navigate = useNavigate();
-   */
+  const navigate = useNavigate();
 
   const [/* email */ setEmail] = useState("");
   const [/* password */ setPassword] = useState("");
@@ -36,12 +34,12 @@ function Login() {
     };
 
     if (email && password) {
-      fetch("http://localhost:5000/api/login", requestOptions)
+      fetch("http://localhost:5000/login", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           setCurrentUser(result.user);
           setToken(result.token);
-          navigate("/dashboard");
+          navigate("/");
         })
         .catch(console.error);
     } */
@@ -58,6 +56,27 @@ function Login() {
         backgroundPosition: "center",
       }}
     >
+      <button
+        onClick={() => navigate(-1)}
+        type="button"
+        className=" absolute m-6 left-10 w-fit text-white flex align-center justify-center "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="#FF9900"
+          className="w-8 h-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+        <p>go back</p>
+      </button>
       {/* Login */}
       <article className="flex flex-col h-full items-center justify-center">
         <div className="text-center ">
@@ -80,9 +99,10 @@ function Login() {
             Sign in into your account
           </h2>
           <span className="text-sm">
-            or {/*  <Link to="/register" className="text-white underline"> */}
-            register a new account
-            {/*  </Link> */}
+            or{" "}
+            <Link to="/registration" className="text-white underline">
+              register a new account
+            </Link>
           </span>
         </div>
         <div className="flex justify-center my-2 mx-4 md:mx-0">
@@ -132,12 +152,12 @@ function Login() {
                   </span>
                 </label>
                 <div className="w-1/2 text-right">
-                  {/*  <a
-                    href="/"
+                  <Link
+                    to="/forgotten-password"
                     className="text-main-yellow text-sm tracking-tight"
-                  > */}
-                  Forget your password?
-                  {/*   </a> */}
+                  >
+                    Forget your password?
+                  </Link>
                 </div>
               </div>
               <div className="w-full md:w-full px-3 mb-6">

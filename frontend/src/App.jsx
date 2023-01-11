@@ -1,8 +1,8 @@
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
 import ForgottenPassword from "./pages/user/ForgottenPassword";
-import Registration from "./pages/user/Registration";
-import Login from "./pages/user/Login";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
 import Error from "./pages/Error";
 import MyProfile from "./pages/user/MyProfile";
 import Home from "./pages/Home";
