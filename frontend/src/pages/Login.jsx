@@ -55,6 +55,7 @@ function Login() {
         backgroundImage: `url('${forestBackground}')`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     >
       {/* Login */}
