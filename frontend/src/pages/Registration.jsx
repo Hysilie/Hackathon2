@@ -4,8 +4,6 @@ import forestBackground from "../assets/forest-background.jpg";
 
 function Registration() {
   const navigate = useNavigate();
-
-  /*  */
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [phone, setPhone] = useState("");
@@ -71,7 +69,7 @@ function Registration() {
 
   return (
     <section
-      className="h-screen"
+      className="h-auto"
       style={{
         backgroundImage: `url('${forestBackground}')`,
         backgroundSize: "cover",
@@ -83,7 +81,7 @@ function Registration() {
       <button
         onClick={() => navigate(-1)}
         type="button"
-        className=" absolute m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center "
+        className=" absolute m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +100,7 @@ function Registration() {
         <p>go back</p>
       </button>
 
-      <article className="flex flex-col h-full items-center justify-center">
+      <article className="flex flex-col h-full items-center justify-center pt-14">
         <div className="text-center ">
           <div className="flex items-center justify-center">
             <svg
