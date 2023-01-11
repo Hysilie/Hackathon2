@@ -59,7 +59,7 @@ function Login() {
       <button
         onClick={() => navigate(-1)}
         type="button"
-        className=" absolute m-6 left-10 w-fit text-white flex align-center justify-center "
+        className=" absolute  m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
