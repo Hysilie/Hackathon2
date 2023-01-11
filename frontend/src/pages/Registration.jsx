@@ -123,9 +123,8 @@ function Registration() {
             Create your profile
           </h2>
           <span className="text-sm">
-            or{" "}
             <Link to="/login" className="text-white underline">
-              sign into your account
+              or sign into your account
             </Link>
           </span>
         </div>
