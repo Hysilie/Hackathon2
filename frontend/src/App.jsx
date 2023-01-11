@@ -24,12 +24,12 @@ function App() {
       {token ? (
         <Routes> */}
         <Route path="/my-profile" element={<MyProfile />} />
-        <Route Path="/cars" element={<SearchResults />} />
-        <Route Path="/cars/:id" element={<ResultDetails />} />
-        <Route Path="/admin/dashboard" element={<Dashboard />} />
-        <Route Path="/admin/vehicles" element={<AllVehicules />} />
-        <Route Path="/admin/vehicles/:id" element={<VehiculeProfile />} />
-        <Route Path="/admin/agencies/:id" element={<AgencyProfile />} />
+        <Route path="/cars" element={<SearchResults />} />
+        <Route path="/cars/:id" element={<ResultDetails />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/vehicles" element={<AllVehicules />} />
+        <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
+        <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
         <Route path="*" element={<Error />} />
         {/* </Routes>
       ) : (
