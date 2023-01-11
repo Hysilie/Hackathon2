@@ -1,24 +1,75 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import forestBackground from "../../assets/forest-background.jpg";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import forestBackground from "../assets/forest-background.jpg";
 
-function ForgottenPassword() {
+function Registration() {
   const navigate = useNavigate();
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeFirstname = (e) => {
+    setFirstname(e.target.value);
+  };
+
+  const handleChangeLastName = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const handleChangePhone = (e) => {
+    setPhone(e.target.value);
+  };
+
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const submitEmail = () => {
-    /* eslint-disable no-alert */
-    alert("A new password as been sent ! check your email adress !");
-    navigate("/login");
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    /* This is a header for the fetch */
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    /* It's an object that will be sent in the body of request */
+    const bodyRaw = JSON.stringify({
+      firstname,
+      lastname,
+      email,
+      password,
+      phone,
+    });
+
+    /* fetch to suscribe at makesense */
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: myHeaders,
+      body: bodyRaw,
+      redirect: "follow",
+    })
+      .then((response) => {
+        if (response.ok) {
+          /* eslint-disable no-alert */
+          alert("Votre inscription à été prise en compte");
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.warn(error); /* 
+        alert("Vous êtes déjà inscrit");
+        navigate("/"); */
+      });
   };
 
   return (
     <section
-      className="h-screen"
+      className="h-auto"
       style={{
         backgroundImage: `url('${forestBackground}')`,
         backgroundSize: "cover",
@@ -26,10 +77,11 @@ function ForgottenPassword() {
         backgroundPosition: "center",
       }}
     >
+      {/* REGISTER */}
       <button
         onClick={() => navigate(-1)}
         type="button"
-        className=" absolute  m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center "
+        className=" absolute m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +99,8 @@ function ForgottenPassword() {
         </svg>
         <p>go back</p>
       </button>
-      <article className="flex flex-col h-full items-center justify-center">
+
+      <article className="flex flex-col h-full items-center justify-center pt-14">
         <div className="text-center ">
           <div className="flex items-center justify-center">
             <svg
@@ -65,19 +118,59 @@ function ForgottenPassword() {
             </svg>
           </div>
           <h2 className="text-4xl text-white tracking-tight">
-            Forgot your password ?
+            Create your profile
           </h2>
-          <span className="text text-white text-center">
-            Just enter your email address below <br />
-            and we'll send you a link to reset your password!
+          <span className="text-sm">
+            <Link to="/login" className="text-white underline">
+              or sign into your account
+            </Link>
           </span>
         </div>
         <div className="flex justify-center my-2 mx-4 md:mx-0">
           <form
+            onSubmit={handleSubmit}
             className="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
-            onSubmit={submitEmail}
           >
             <div className="flex flex-wrap -mx-3 mb-6">
+              {/* firstname */}
+              <div className="w-full md:w-full px-3 mb-6">
+                <div className="flex w-full">
+                  <div className="w-full">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="Password"
+                    >
+                      Firstname
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                      type="text"
+                      required
+                      onChange={handleChangeFirstname}
+                    />
+                  </div>
+
+                  {/* lastname */}
+
+                  <div className="w-full md:w-full px-3 ">
+                    <div className="w-full">
+                      <label
+                        className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        htmlFor="Password"
+                      >
+                        Lastname
+                      </label>
+                      <input
+                        className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                        type="text"
+                        required
+                        onChange={handleChangeLastName}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="w-full md:w-full px-3 mb-6">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -88,23 +181,71 @@ function ForgottenPassword() {
                 <input
                   className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                   type="email"
-                  value={email}
-                  onChange={handleChangeEmail}
                   required
+                  onChange={handleChangeEmail}
+                />
+              </div>
+              <div className="w-full md:w-full px-3 mb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="Password"
+                >
+                  Phone number
+                </label>
+                <input
+                  className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                  type="number"
+                  required
+                  onChange={handleChangePhone}
                 />
               </div>
 
+              <div className="w-full md:w-full px-3 mb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="Password"
+                >
+                  Password
+                </label>
+                <input
+                  className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                  type="password"
+                  required
+                  onChange={handleChangePassword}
+                />
+              </div>
+              <div className="w-full flex items-center justify-between px-3 mb-3 ">
+                <label htmlFor="remember" className="flex items-center w-1/2">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    className="mr-1 bg-white shadow"
+                  />
+                  <span className="text-sm text-gray-700 pt-1">
+                    Remember Me
+                  </span>
+                </label>
+                <div className="w-1/2 text-right">
+                  <Link
+                    to="/forgotten-password"
+                    className="text-main-yellow text-sm tracking-tight"
+                  >
+                    Forget your password?
+                  </Link>
+                </div>
+              </div>
               <div className="w-full md:w-full px-3 mb-6">
                 <button
                   type="submit"
                   className="appearance-none block w-full bg-main-yellow text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-second-yellow focus:outline-none focus:bg-second-yellow focus:border-gray-500"
                 >
-                  Reset password
+                  Register
                 </button>
               </div>
               <div className="mx-auto -mb-6 pb-1">
                 <span className="text-center text-xs text-gray-700">
-                  or sign up with
+                  or register with
                 </span>
               </div>
               <div className="flex items-center w-full mt-2">
@@ -151,9 +292,10 @@ function ForgottenPassword() {
             </div>
           </form>
         </div>
+        {/* END OF REGISTER */}
       </article>
     </section>
   );
 }
 
-export default ForgottenPassword;
+export default Registration;

@@ -1,19 +1,49 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import forestBackground from "../../assets/forest-background.jpg";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import forestBackground from "../assets/forest-background.jpg";
+import { useCurrentUserContext } from "../contexts/UserContext";
 
-function ForgottenPassword() {
+function Login() {
+  const { setUser } = useCurrentUserContext({});
+
   const navigate = useNavigate();
 
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const submitEmail = () => {
-    /* eslint-disable no-alert */
-    alert("A new password as been sent ! check your email adress !");
-    navigate("/login");
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const body = JSON.stringify({ email, password });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body,
+    };
+
+    if (email && password) {
+      fetch("http://localhost:5000/login", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          localStorage.setItem("token", result.token);
+          setUser(result.user);
+          navigate("/");
+        })
+        .catch(console.error);
+    }
+    /* "Entrez vos in formations de connexion" */
   };
 
   return (
@@ -47,6 +77,7 @@ function ForgottenPassword() {
         </svg>
         <p>go back</p>
       </button>
+      {/* Login */}
       <article className="flex flex-col h-full items-center justify-center">
         <div className="text-center ">
           <div className="flex items-center justify-center">
@@ -65,17 +96,19 @@ function ForgottenPassword() {
             </svg>
           </div>
           <h2 className="text-4xl text-white tracking-tight">
-            Forgot your password ?
+            Sign in into your account
           </h2>
-          <span className="text text-white text-center">
-            Just enter your email address below <br />
-            and we'll send you a link to reset your password!
+          <span className="text-sm">
+            or{" "}
+            <Link to="/registration" className="text-white underline">
+              register a new account
+            </Link>
           </span>
         </div>
         <div className="flex justify-center my-2 mx-4 md:mx-0">
           <form
+            onSubmit={handleSubmit}
             className="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
-            onSubmit={submitEmail}
           >
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-full px-3 mb-6">
@@ -88,18 +121,51 @@ function ForgottenPassword() {
                 <input
                   className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                   type="email"
-                  value={email}
-                  onChange={handleChangeEmail}
                   required
+                  onChange={handleChangeEmail}
                 />
               </div>
-
+              <div className="w-full md:w-full px-3 mb-6">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="Password"
+                >
+                  Password
+                </label>
+                <input
+                  className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                  type="password"
+                  required
+                  onChange={handleChangePassword}
+                />
+              </div>
+              <div className="w-full flex items-center justify-between px-3 mb-3 ">
+                <label htmlFor="remember" className="flex items-center w-1/2">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    className="mr-1 bg-white shadow"
+                  />
+                  <span className="text-sm text-gray-700 pt-1">
+                    Remember Me
+                  </span>
+                </label>
+                <div className="w-1/2 text-right">
+                  <Link
+                    to="/forgotten-password"
+                    className="text-main-yellow text-sm tracking-tight"
+                  >
+                    Forget your password?
+                  </Link>
+                </div>
+              </div>
               <div className="w-full md:w-full px-3 mb-6">
                 <button
                   type="submit"
                   className="appearance-none block w-full bg-main-yellow text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-second-yellow focus:outline-none focus:bg-second-yellow focus:border-gray-500"
                 >
-                  Reset password
+                  Sign in
                 </button>
               </div>
               <div className="mx-auto -mb-6 pb-1">
@@ -152,8 +218,9 @@ function ForgottenPassword() {
           </form>
         </div>
       </article>
+      {/* end login */}
     </section>
   );
 }
 
-export default ForgottenPassword;
+export default Login;

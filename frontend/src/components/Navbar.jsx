@@ -10,7 +10,7 @@ function Navbar() {
   };
   return (
     <div>
-      <div className="h-16 py-3 flex flex-row justify-between shadow-md relative z-0">
+      <div className="h-16 py-3 flex flex-row justify-between shadow-md relative">
         <Link to="/">
           <img src={logo} alt="logo" className="h-10 mx-4" />
         </Link>
@@ -56,8 +56,8 @@ function Navbar() {
         </button>
       </div>
       {showLoginOptions ? (
-        <div className="text-right absolute right-0 z-20">
-          <ul className="shadow-md rounded-lg py-2">
+        <div className="text-right absolute right-0">
+          <ul className="shadow-md rounded-bl-lg py-2 bg-white">
             <Link to="/login" onClick={showOptions}>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
                 Login
