@@ -13,6 +13,25 @@ const browse = (req, res) => {
     });
 };
 
+/* function that retrieves data with "post" */
+const add = (req, res) => {
+  const agency = req.body;
+
+  // TODO validations (length, format...)
+
+  models.agency
+    .insert(agency)
+    .then(([result]) => {
+      res.location(`/agency/${result.insertId}`);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
+  add,
 };
