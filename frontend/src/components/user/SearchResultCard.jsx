@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function SearchResultCard({ car }) {
-  console.warn("car", car);
   return (
     <div className="shadow-lg border rounded-lg lg:h-32 h-48 flex flex-row m-4">
       <img
