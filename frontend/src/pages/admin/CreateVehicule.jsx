@@ -24,10 +24,6 @@ function CreateVehicule() {
   const [pricePerDay, setPricePerDay] = useState("");
   const [agency_id, setAgency] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const handleTypeOfCar = (e) => {
     setTypeOfCar(e.target.value);
   };
@@ -161,10 +157,7 @@ function CreateVehicule() {
             <h2 className="text-4xl  tracking-tight">Add a car to the fleet</h2>
           </div>
           <div className="flex justify-center my-2 mx-4 md:mx-0">
-            <form
-              onSubmit={handleSubmit}
-              className="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
-            >
+            <form className="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
               <div className="flex flex-col -mx-3 mb-6">
                 <div className="w-full  mb-6">
                   <div className="flex  w-100">

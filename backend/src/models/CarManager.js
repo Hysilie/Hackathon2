@@ -17,8 +17,8 @@ class CarManager extends AbstractManager {
   findAllByLocationAndDate(city, startDate, endDate) {
     return this.connection.query(
       `select *
-      from car 
-      JOIN agency on car.agency_id=agency.id
+      from ${this.table} 
+      JOIN agency on ${this.table}.agency_id=agency.id
       where agency.name = ? AND
       ${this.table}.id NOT IN (SELECT car_id FROM rental WHERE 
       ("?" NOT BETWEEN rental.departureDate AND rental.returnDate) AND ("?" NOT BETWEEN rental.departureDate AND rental.returnDate));`,
