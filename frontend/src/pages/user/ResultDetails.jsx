@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import teslaS from "../../assets/teslamodelS.svg";
 import MapAgency from "../../components/map/MapAgency";
 
 function ResultDetails() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1 className="uppercase underline text-center mt-8 text-2xl">
@@ -30,6 +33,9 @@ function ResultDetails() {
       <div>
         <div className="flex justify-end mr-36">
           <button
+            onClick={() => {
+              navigate("/cars/1/rent");
+            }}
             type="button"
             className="bg-main-yellow text-white text-2xl mb-5 w-36 font-medium py-2 px-4 rounded-xl"
           >
