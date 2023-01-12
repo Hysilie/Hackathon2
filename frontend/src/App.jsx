@@ -29,12 +29,7 @@ function App() {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/cars" element={<SearchResults />} />
         <Route path="/cars/:id" element={<ResultDetails />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/agencies/:id/vehicles" element={<AllVehicules />} />
-        <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
-        <Route path="/admin/vehicles/create" element={<CreateVehicule />} />
-        <Route path="/admin/agencies/create" element={<CreateAgencies />} />
-        <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
+        <Route path="/cars/:id/rent" element={<RentPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />
