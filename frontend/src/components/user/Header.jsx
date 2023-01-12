@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Header() {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [city, setCity] = useState();
 
   return (
     <div
@@ -24,8 +26,10 @@ function Header() {
       <div className="flex flex-row m-12">
         <input
           type="text"
-          placeholder="City"
+          placeholder="Lyon, Paris, Bordeaux, ..."
           className="rounded-l-lg h-[40px] px-2"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
         />
         <DatePicker
           selected={startDate}
@@ -35,8 +39,8 @@ function Header() {
           placeholder="Start date"
         />
         <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
           disabledKeyboardNavigation
           className="h-[40px] px-2 border-l-2"
           placeholder="Return date"
