@@ -6,7 +6,7 @@ function SearchResults({ cars }) {
   return (
     <div>
       <div className="flex lg:flex-row justify-between flex-col">
-        <MapAgency />
+        <MapAgency cars={cars} />
         <div className="flex lg:flex-col w-full flex-row overflow-y-scroll h-[60vh]">
           {cars?.map((car) => (
             <SearchResultCard key={car.id} car={car} />
