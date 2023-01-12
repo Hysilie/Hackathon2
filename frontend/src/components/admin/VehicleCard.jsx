@@ -45,7 +45,7 @@ function VehicleCard({ vehicle }) {
           vehicle ? `http://localhost:5000/car-photo/${vehicle.photo}` : null
         }
         alt="Nom de la voiture"
-        className="w-32  mx-auto"
+        className="object-contain w-32 h-32 mx-auto"
       />
       <ul className="flex m-0 items-center justify-around text-sm">
         <li className="flex items-center">

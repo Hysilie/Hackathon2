@@ -56,7 +56,10 @@ router.post(
 );
 router.get("/car-photo/:fileName", fileControllers.sendCarPhoto);
 
+router.delete("/deleteCar/:id", carControllers.deleteCar);
+
 // RENTAL ROUTES
-router.get("/rental", rentalControllers.browse);
+router.get("/allRentals", rentalControllers.browse);
+router.get("/rentalsByUser/:id", rentalControllers.rentalsByUser);
 
 module.exports = router;
