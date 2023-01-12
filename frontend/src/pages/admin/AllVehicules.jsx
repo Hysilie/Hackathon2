@@ -1,9 +1,22 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import VehicleCard from "../../components/admin/VehicleCard";
 
 function AllVehicules() {
   const navigate = useNavigate();
+  const [vehicles, setVehicles] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/carByAgency/${id}`)
+      .then((res) => res.json())
+      .then((result) => {
+        console.warn(result);
+        setVehicles(result);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
+
   return (
     <section className="">
       <button
@@ -58,12 +71,11 @@ function AllVehicules() {
         </button>
       </article>
       <article className="flex justify-center  flex-wrap gap-6 my-8 mx-[15vw]">
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
+        {vehicles?.map((vehicle) => (
+          <div vehicle={vehicle.id}>
+            <VehicleCard vehicle={vehicle} />
+          </div>
+        ))}
       </article>
     </section>
   );

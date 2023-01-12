@@ -1,7 +1,7 @@
 import React from "react";
 import automatic from "../../assets/automatic.svg";
 
-function VehicleCard() {
+function VehicleCard({ vehicle }) {
   const removeCar = () => {
     /* removeCar */
   };
@@ -35,7 +35,9 @@ function VehicleCard() {
         </svg>
       </button>
 
-      <h2 className="text-lg font-semibold text-center p-2">Super model S3</h2>
+      <h2 className="text-lg font-semibold text-center p-2">
+        {vehicle[0].brand} {vehicle[0].model}
+      </h2>
       <img
         src="https://images.caradisiac.com/images/8/7/4/4/168744/S0-renault-zoe-une-serie-limitee-a-prix-agressif-553981.jpg"
         alt="Nom de la voiture"
@@ -57,7 +59,7 @@ function VehicleCard() {
               d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
             />
           </svg>
-          <p>5</p>
+          <p>{vehicle[0].maxPlace}</p>
         </li>
 
         <li className="flex items-center">
@@ -77,7 +79,7 @@ function VehicleCard() {
           </svg>
           <p>
             {/* gear box */}
-            350kms
+            {vehicle[0].autonomy}kms
           </p>
         </li>
         <li className="flex items-center">
