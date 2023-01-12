@@ -79,6 +79,24 @@ const addNewCar = (req, res) => {
     });
 };
 
+const editCar = (req, res) => {
+  const car = req.body;
+  car.id = parseInt(req.params.id, 10);
+  models.car
+    .edit(car)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const updateCarPhoto = (req, res) => {
   const id = req.payload.sub;
   const { carPhoto } = req;
@@ -118,4 +136,5 @@ module.exports = {
   addNewCar,
   updateCarPhoto,
   deleteCar,
+  editCar,
 };
