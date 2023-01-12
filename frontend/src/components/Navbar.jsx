@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import CurrentUserContext from "../contexts/UserContext";
 
 function Navbar() {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
@@ -8,6 +9,19 @@ function Navbar() {
   const showOptions = () => {
     setShowLoginOptions(!showLoginOptions);
   };
+
+  const { user } = useContext(CurrentUserContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    navigate("/");
+    window.location.reload();
+  };
+
   return (
     <div>
       <div className="h-16 py-3 flex flex-row justify-between shadow-md relative">
@@ -57,18 +71,34 @@ function Navbar() {
       </div>
       {showLoginOptions ? (
         <div className="text-right absolute right-0">
-          <ul className="shadow-md rounded-bl-lg py-2 bg-white">
-            <Link to="/login" onClick={showOptions}>
+          {user.email ? (
+            <ul className="shadow-md rounded-bl-lg py-2 bg-white">
+              <Link to="/my-profile">
+                <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
+                  Profile
+                </li>
+              </Link>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
-                Login
+                <button type="button" onClick={handleLogout}>
+                  {" "}
+                  Disconnect
+                </button>
               </li>
-            </Link>
-            <Link to="/registration" onClick={showOptions}>
-              <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
-                Register
-              </li>
-            </Link>
-          </ul>
+            </ul>
+          ) : (
+            <ul className="shadow-md rounded-bl-lg py-2 bg-white">
+              <Link to="/login" onClick={showOptions}>
+                <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
+                  Login
+                </li>
+              </Link>
+              <Link to="/registration" onClick={showOptions}>
+                <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
+                  Register
+                </li>
+              </Link>
+            </ul>
+          )}
         </div>
       ) : (
         ""

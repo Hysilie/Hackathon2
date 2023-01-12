@@ -16,6 +16,7 @@ const {
 } = require("./middlewares/auth");
 const { verifyEmail } = require("./middlewares/verifyEmail");
 
+// USER ROUTES
 router.get("/user", userControllers.browse);
 router.get("/user/bytoken", verifyToken, userControllers.findByToken);
 router.get("/user/:id", verifyToken, userControllers.read);
@@ -27,6 +28,23 @@ router.post(
   verifyPassword
 );
 
+// CAR ROUTES
+router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get("/totalCars", carControllers.browseAllCars);
+router.get(
+  "/totalCarsRentedByAgency/:id",
+  carControllers.browseCarRentedByAgency
+);
+router.get(
+  "/nonAvailableCarByAgency/:id",
+  carControllers.findNonAvailableCarByAgency
+);
+router.post("/newCar", carControllers.addNewCar);
+
+// RENTAL ROUTES
+const rentalControllers = require("./controllers/rentalControllers");
+
+router.get("/rental", rentalControllers.browse);
 router.post(
   "/carPhoto",
   verifyToken,

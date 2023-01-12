@@ -1,7 +1,12 @@
 import React from "react";
+import MapAgency from "../../components/map/MapAgency";
 
 function SearchResults() {
-  return <div>SearchResults</div>;
+  return (
+    <div>
+      <MapAgency />
+    </div>
+  );
 }
 
 export default SearchResults;
