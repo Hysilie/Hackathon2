@@ -13,6 +13,7 @@ import AllVehicules from "./pages/admin/AllVehicules";
 import VehiculeProfile from "./pages/admin/VehiculeProfile";
 import AgencyProfile from "./pages/admin/AgencyProfile";
 import Navbar from "./components/Navbar";
+import CreateVehicule from "./pages/admin/CreateVehicule";
 /* import { useCurrentUserContext } from "./contexts/UserContext";
  */
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/vehicles" element={<AllVehicules />} />
         <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
+        <Route path="/admin/vehicles/create" element={<CreateVehicule />} />
         <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />

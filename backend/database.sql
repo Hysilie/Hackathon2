@@ -55,14 +55,15 @@ CREATE TABLE car (
   maxPlace int NOT NULL,
   optionCar text,
   locationCar text NOT NULL,
-  available boolean NOT NULL,
+  available boolean NOT NULL DEFAULT 1,
   pricePerDay int NOT NULL,
-  agency_id int,
+  agency_id int NOT NULL,
+  rented boolean NOT NULL DEFAULT 0,
   FOREIGN KEY (agency_id) REFERENCES agency(id)
 );
 
-INSERT INTO car (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, available, pricePerDay)
-VALUES ('berline', 'Renault', 'Zoe', 2018, 'imageZoe.jpg', 'AZ-354-BK', 10082, 500, 'automatic', 90, 5, 'camera', '14 avenue de la canebière 13001 Marseille', 1, 80);
+INSERT INTO car (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, pricePerDay, agency_id)
+VALUES ('berline', 'Renault', 'Zoe', 2018, 'imageZoe.jpg', 'AZ-354-BK', 10082, 500, 'automatic', 90, 5, 'camera', '14 avenue de la canebière 13001 Marseille', 80, 1);
 
 
 DROP TABLE IF EXISTS rental;
