@@ -42,7 +42,7 @@ function MapAgency() {
  */
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-auto w-screen">
       <div id="map">
         <MapContainer
           center={[48.8588897, 2.320041]}
