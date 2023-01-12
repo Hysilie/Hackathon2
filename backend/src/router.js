@@ -21,6 +21,7 @@ const { verifyEmail } = require("./middlewares/verifyEmail");
 
 // AGENCY ROUTES
 router.get("/agencies", agencyControllers.browse);
+router.post("/agencie-register", agencyControllers.add);
 
 // USER ROUTES
 router.get("/user", userControllers.browse);
