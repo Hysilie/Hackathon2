@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <div>
       <Header cars={cars} setCars={setCars} />
+
       {cars.length === 0 ? (
         <div className="flex flex-col items-center">
           <div className="flex flex-row justify-center mt-12">

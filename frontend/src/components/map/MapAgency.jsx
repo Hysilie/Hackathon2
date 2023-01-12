@@ -2,21 +2,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable import/no-duplicates */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "../../index.css";
 import LeafletControlGeocoder from "./LeafletGeocoder";
 
 function MapAgency({ cars }) {
-  /*   const [agencies, setAgencies] = useState(); */
-  const [chargeCar, setChargeCar] = useState([]);
+  /*   const [chargeCar, setChargeCar] = useState([]); 
+  
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${token}`);
 
-  const myHeader = new Headers();
-  myHeader.append("X-API-KEY", "381b60bc-b81b-45a3-9325-fd5143eb58a9");
   const requestOptions = {
     method: "GET",
-    headers: myHeader,
-  };
+    headers: myHeaders,
+  }; 
 
   useEffect(() => {
     fetch(
@@ -28,18 +28,8 @@ function MapAgency({ cars }) {
         setChargeCar(result);
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, []); */
 
-  /*   useEffect(() => {
-    fetch("http://localhost:5000/agency")
-      .then((res) => res.json())
-      .then((result) => {
-        console.warn(result);
-        setAgencies(result);
-      })
-      .catch((err) => console.warn(err));
-  }, []);
- */
   const agencies = [
     { city: "Lyon", latitude: "45.764042", longitude: "4.835659" },
     { city: "Paris", latitude: "48.856613", longitude: "2.352222" },
@@ -49,10 +39,10 @@ function MapAgency({ cars }) {
     { city: "Bordeaux", latitude: "44.841225", longitude: "-0.5800364" },
     { city: "Caen", latitude: "49.1813403", longitude: "-0.3635615" },
   ];
+
   const resultat = [];
 
   const { name } = cars[0];
-  console.warn("bonjou", name);
 
   for (let i = 0; i < agencies.length; i++) {
     if (name.includes(agencies[i].city)) {
@@ -65,7 +55,6 @@ function MapAgency({ cars }) {
       <div className="mapCard">
         <MapContainer
           center={[resultat[0].latitude, resultat[0].longitude]}
-          /*    center={["43.4832523", "1.5592776"]} */
           zoom={11}
           scrollWheelZoom={false}
           className="mapCard"
@@ -75,17 +64,12 @@ function MapAgency({ cars }) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <LeafletControlGeocoder />
-          {chargeCar?.map((borne) => (
-            <Marker
-              key={borne.AddressInfo.ID}
-              position={[
-                borne.AddressInfo.Latitude,
-                borne.AddressInfo.Longitude,
-              ]}
-            >
+          {cars?.map((car) => (
+            <Marker key={car.carId} position={[car.latitude, car.longitude]}>
               <Popup>
-                Adress : {borne.AddressInfo.AddressLine1} <br></br>
-                City : {borne.AddressInfo.Town}
+                Adress : {car.adress}
+                <br></br>
+                City : {car.name}
               </Popup>
             </Marker>
           ))}
