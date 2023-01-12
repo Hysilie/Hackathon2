@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/self-closing-comp */
@@ -42,7 +43,8 @@ function MapAgency({ cars }) {
 
   const resultat = [];
 
-  const { name } = cars[0];
+  const name = cars[0].name;
+  console.log(name);
 
   for (let i = 0; i < agencies.length; i++) {
     if (name.includes(agencies[i].city)) {

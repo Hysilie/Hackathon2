@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import forestBackground from "../assets/forest-background.jpg";
 
 function Registration() {
@@ -10,6 +11,11 @@ function Registration() {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const notify = () =>
+    toast.error(
+      "Please fill all the fields and check if the adress is correct"
+    );
 
   const handleChangeFirstname = (e) => {
     setFirstname(e.target.value);
@@ -47,23 +53,29 @@ function Registration() {
     });
 
     /* fetch to suscribe at makesense */
-    fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: myHeaders,
-      body: bodyRaw,
-      redirect: "follow",
-    })
+    toast
+      .promise(
+        fetch("http://localhost:5000/register", {
+          method: "POST",
+          headers: myHeaders,
+          body: bodyRaw,
+          redirect: "follow",
+        }),
+        {
+          loading: "Registration in progress",
+          success: "Welcome to our website, registration successful",
+          error: "Error while registering",
+        }
+      )
       .then((response) => {
-        if (response.ok) {
-          /* eslint-disable no-alert */
-          alert("Votre inscription à été prise en compte");
-          navigate("/login");
+        if (response.status === 201) {
+          setTimeout(() => navigate("/login"), 900);
+        } else {
+          notify();
         }
       })
       .catch((error) => {
-        console.warn(error); /* 
-        alert("Vous êtes déjà inscrit");
-        navigate("/"); */
+        console.warn(error);
       });
   };
 
@@ -77,6 +89,7 @@ function Registration() {
         backgroundPosition: "center",
       }}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       {/* REGISTER */}
       <button
         onClick={() => navigate(-1)}
