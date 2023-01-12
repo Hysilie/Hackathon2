@@ -1,36 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import forestHeader from "../../assets/forest-background.jpg";
 import "react-datepicker/dist/react-datepicker.css";
 
-function Header({ setCars }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [city, setCity] = useState();
-
-  const dateConvertedToSqlFormat = (date) => {
-    const dateConverted = new Date(date);
-    const year = dateConverted.getFullYear();
-    const month = dateConverted.getMonth() + 1;
-    const day = dateConverted.getDate();
-
-    return `${year}-${month}-${day}`;
-  };
-
-  const handleclick = () => {
-    fetch(
-      `http://localhost:5000/carbylocationanddate?startDate=${dateConvertedToSqlFormat(
-        startDate
-      )}&endDate=${dateConvertedToSqlFormat(endDate)}&city=${city}`
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setCars(result);
-      })
-      .catch((err) => console.warn(err));
-  };
-  console.warn("start", typeof startDate);
-  console.warn("end", typeof endDate);
+function Header({
+  setStartDate,
+  setEndDate,
+  setCity,
+  city,
+  handleclick,
+  startDate,
+  endDate,
+}) {
   return (
     <div
       className="object-cover h-96 w-full flex flex-col items-center justify-center"

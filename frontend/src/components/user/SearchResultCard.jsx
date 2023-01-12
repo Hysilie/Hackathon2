@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function SearchResultCard({ car }) {
+  console.warn("car", car);
   return (
     <div className="shadow-lg border rounded-lg lg:h-32 h-48 flex flex-row m-4">
       <img
@@ -89,7 +90,7 @@ function SearchResultCard({ car }) {
           <p className="text-main-yellow text-3xl font-semibold m-2">
             {car.pricePerDay}€
           </p>
-          <Link to="/cars/1" className="p-1  text-white ">
+          <Link to={`/cars/${car.car_id}`} className="p-1  text-white ">
             <div className="w-24 bg-main-yellow m-2 p-2 rounded  text-center">
               Rent
             </div>
