@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import teslaS from "../../assets/teslamodelS.svg";
-import MapAgency from "../../components/map/MapAgency";
+import MapBorn from "../../components/map/MapBorn";
 
 function ResultDetails() {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ function ResultDetails() {
           </button>
         </div>
       </div>
-      <MapAgency />
+      <MapBorn />
     </div>
   );
 }
