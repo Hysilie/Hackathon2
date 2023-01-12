@@ -17,6 +17,27 @@ const browseAllCarsByAgency = (req, res) => {
     });
 };
 
+const browseAllCarsByLocationAndDate = (req, res) => {
+  const { city, startDate, endDate } = req.query;
+
+  if (city && startDate && endDate) {
+    models.car
+      .findAllByLocationAndDate(city, startDate, endDate)
+      .then(([rows]) => {
+        console.warn(rows);
+        if (rows[0] == null) {
+          res.sendStatus(404);
+        } else {
+          res.send(rows);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  } else res.sendStatus(400);
+};
+
 const browseAllCars = (req, res) => {
   models.car
     .findAllCars()
@@ -130,6 +151,7 @@ const deleteCar = (req, res) => {
 };
 module.exports = {
   browseAllCarsByAgency,
+  browseAllCarsByLocationAndDate,
   browseAllCars,
   browseCarRentedByAgency,
   findNonAvailableCarByAgency,
