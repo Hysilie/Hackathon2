@@ -11,8 +11,8 @@ function AllVehicules() {
     fetch(`http://localhost:5000/carByAgency/${id}`)
       .then((res) => res.json())
       .then((result) => {
-        console.warn(result);
-        setVehicles(result);
+        console.warn(result[0]);
+        setVehicles(result[0]);
       })
       .catch((err) => console.warn(err));
   }, []);

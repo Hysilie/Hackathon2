@@ -78,6 +78,25 @@ const addNewCar = (req, res) => {
       res.sendStatus(500);
     });
 };
+
+const editCar = (req, res) => {
+  const car = req.body;
+  car.id = parseInt(req.params.id, 10);
+  models.car
+    .edit(car)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const updateCarPhoto = (req, res) => {
   const id = req.payload.sub;
   const { carPhoto } = req;
@@ -94,6 +113,21 @@ const updateCarPhoto = (req, res) => {
     });
 };
 
+const deleteCar = (req, res) => {
+  models.car
+    .delete(req.params.id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 module.exports = {
   browseAllCarsByAgency,
   browseAllCars,
@@ -101,4 +135,6 @@ module.exports = {
   findNonAvailableCarByAgency,
   addNewCar,
   updateCarPhoto,
+  deleteCar,
+  editCar,
 };
