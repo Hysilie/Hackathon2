@@ -11,6 +11,7 @@ import ResultDetails from "./pages/user/ResultDetails";
 import Dashboard from "./pages/admin/Dashboard";
 import AllVehicules from "./pages/admin/AllVehicules";
 import VehiculeProfile from "./pages/admin/VehiculeProfile";
+import MapBornToALive from "./pages/user/MapBornToBeAlive";
 import AgencyProfile from "./pages/admin/AgencyProfile";
 import Navbar from "./components/Navbar";
 import CreateVehicule from "./pages/admin/CreateVehicule";
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/charging-stations" element={<MapBornToALive />} />
         <Route path="/cars" element={<SearchResults />} />
         <Route path="/cars/:id" element={<ResultDetails />} />
         <Route path="/login" element={<Login />} />
