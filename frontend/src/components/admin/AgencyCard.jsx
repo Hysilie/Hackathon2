@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import chevronright from "../../assets/chevron-right.svg";
 
 function AgencyCard() {
+  const navigate = useNavigate();
+
   return (
     <div className="shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-2/3 rounded-2xl">
       <div className="bg-white rounded-3xl p-4 flex flex-col ml-4 relative">
@@ -18,7 +21,7 @@ function AgencyCard() {
             Unavailable: <spans className="text-main-yellow">100</spans>
           </div>
         </div>
-        <button type="button">
+        <button onClick={() => navigate("/admin/vehicles")} type="button">
           <img
             className="w-10 absolute right-0 top-11"
             src={chevronright}
