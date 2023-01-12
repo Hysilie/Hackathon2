@@ -84,6 +84,11 @@ function Navbar() {
                   </li>
                 </Link>
               ) : null}
+              <Link to="/charging-stations">
+                <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
+                  Charging Stations
+                </li>
+              </Link>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
                 <button type="button" onClick={handleLogout}>
                   {" "}
