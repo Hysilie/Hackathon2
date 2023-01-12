@@ -49,8 +49,8 @@ function App() {
       .catch((err) => console.warn(err));
   };
 
-  console.warn("start", typeof startDate);
-  console.warn("end", typeof endDate);
+  console.warn("start", startDate);
+  console.warn("end", endDate);
   console.warn(user);
   return (
     <div>
