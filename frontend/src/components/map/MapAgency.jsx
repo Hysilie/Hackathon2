@@ -42,8 +42,8 @@ function MapAgency() {
  */
 
   return (
-    <div className="h-screen w-screen">
-      <div id="map">
+    <div className="h-auto">
+      <div className="mapCard">
         <MapContainer
           center={[48.8588897, 2.320041]}
           zoom={11}

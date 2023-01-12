@@ -4,6 +4,7 @@ const browseAllCarsByAgency = (req, res) => {
   models.car
     .findAllByAgency(req.params.id)
     .then(([rows]) => {
+      console.warn(rows);
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
