@@ -19,6 +19,7 @@ import { useCurrentUserContext } from "./contexts/UserContext";
 
 function App() {
   const { user } = useCurrentUserContext();
+  console.warn(user);
   return (
     <div>
       <Navbar />
