@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AgencyCard from "../../components/admin/AgencyCard";
 import circleplusicon from "../../assets/plus-circle.svg";
 
 function Dashboard() {
+  const [agencies, setAgencies] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:5000/agencies")
+      .then((res) => res.json())
+      .then((result) => {
+        setAgencies(result);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
   const options = {
     year: "numeric",
     month: "long",
@@ -35,7 +46,14 @@ function Dashboard() {
               <img src={circleplusicon} alt="plus icon" className="w-6 mt-7" />
             </button>
           </div>
-          <AgencyCard />
+
+          {agencies?.map((agency) => (
+            <div key={agency.id} className="p-3">
+              <Link to={`/admin/agencies/${agency.id}/vehicles`}>
+                <AgencyCard agency={agency} />
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>
