@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MapAgency from "../../components/map/MapAgency";
 import { useCurrentUserContext } from "../../contexts/UserContext";
+import MapBorn from "../../components/map/MapBorn";
 
 function ResultDetails({ startDate, endDate, city }) {
   const { token } = useCurrentUserContext();
