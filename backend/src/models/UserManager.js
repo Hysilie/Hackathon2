@@ -18,6 +18,21 @@ class UserManager extends AbstractManager {
     );
   }
 
+  update(user) {
+    return this.connection.query(
+      `update ${this.table} set firstname = ?, lastname = ?, email = ?, country = ?, phone = ?, numberOfLicense = ? where id = ?`,
+      [
+        user.firstname,
+        user.lastname,
+        user.email,
+        user.country,
+        user.phone,
+        user.numberOfLicense,
+        user.id,
+      ]
+    );
+  }
+
   selectEmail(email) {
     return this.connection.query(
       `select * from ${this.table} where email = ?`,

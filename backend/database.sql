@@ -36,7 +36,7 @@ INSERT INTO agency (name, location, latitude, longitude)
 VALUES ('Lyon', '11 rue de la rue 69000', '45.764042', '4.835659'),('Paris', '12 rue de la rue 75000', '48.856613', '2.352222'),
 ('Marseille', '11 rue de la rue 69000', '43.296482', '5.369780'),('Nice', '13 rue de la rue 13000', '43.710175', '7.261953'),
 ('Biarritz', '11 rue de la rue', '43.4832523', '1.5592776'), ('Bordeaux', '13 rue de la rue', '44.841225', '-0.5800364'),
-('Brest', '11 rue de la rue', '48.3905283', '-4.4860088');
+('Caen', '15 rue de la rue', '49.1813403', '-0.3635615');
 
 DROP TABLE IF EXISTS car; 
 
@@ -144,12 +144,13 @@ CREATE TABLE rental (
   returnDate datetime NOT NULL,
   user_id int,
   car_id int,
+  agency_id int,
   FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (car_id) REFERENCES car(id)
+  FOREIGN KEY (car_id) REFERENCES car(id),
+  FOREIGN KEY (agency_id) REFERENCES agency(id)
 );
 
-INSERT INTO rental (departureDate, returnDate)
-VALUES ('2022-10-13 12:12:23', '2022-10-15 12:12:23'); 
+insert into rental (departureDate, returnDate, user_id, car_id, agency_id) values ("2022-10-14 12:12:23", "2022-10-18 12:12:30", "1", "1", "1"); 
 
 
 DROP TABLE IF EXISTS invoice;

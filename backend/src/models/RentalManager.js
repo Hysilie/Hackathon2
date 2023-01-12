@@ -7,7 +7,9 @@ class RentalManager extends AbstractManager {
 
   rentalByUser(id) {
     return this.connection.query(
-      `select * from ${this.table} left join car on rental.car_id = car.id where user_id = ?`,
+      `select * from ${this.table} left join car on rental.car_id = car.id 
+      left join agency on rental.agency_id = agency.id
+      where user_id = ?`,
       [id]
     );
   }
