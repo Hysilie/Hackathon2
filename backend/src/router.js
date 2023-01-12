@@ -4,10 +4,13 @@ const multer = require("multer");
 const router = express.Router();
 const upload = multer({ dest: process.env.UPLOAD_DIR });
 
+// REQUIRE FILES
 const fileControllers = require("./controllers/fileControllers");
 const carControllers = require("./controllers/carControllers");
 const authControllers = require("./controllers/authController");
 const userControllers = require("./controllers/userControllers");
+const agencyControllers = require("./controllers/agencyControllers");
+const rentalControllers = require("./controllers/rentalControllers");
 
 const {
   hashPassword,
@@ -15,6 +18,9 @@ const {
   verifyToken,
 } = require("./middlewares/auth");
 const { verifyEmail } = require("./middlewares/verifyEmail");
+
+// AGENCY ROUTES
+router.get("/agencies", agencyControllers.browse);
 
 // USER ROUTES
 router.get("/user", userControllers.browse);
@@ -41,10 +47,6 @@ router.get(
 );
 router.post("/newCar", carControllers.addNewCar);
 
-// RENTAL ROUTES
-const rentalControllers = require("./controllers/rentalControllers");
-
-router.get("/rental", rentalControllers.browse);
 router.post(
   "/carPhoto",
   verifyToken,
@@ -53,5 +55,8 @@ router.post(
   carControllers.updateCarPhoto
 );
 router.get("/car-photo/:fileName", fileControllers.sendCarPhoto);
+
+// RENTAL ROUTES
+router.get("/rental", rentalControllers.browse);
 
 module.exports = router;
