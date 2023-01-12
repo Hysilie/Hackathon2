@@ -1,11 +1,10 @@
-import Home from "./pages/Home";
+import MapAgency from "./components/map/MapAgency";
 import "./index.css";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Home />
+      <MapAgency />
     </div>
   );
 }

@@ -27,11 +27,16 @@ DROP TABLE IF EXISTS agency;
 CREATE TABLE agency (
   id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name varchar(255),
-  location varchar(255) NOT NULL
+  location varchar(255) NOT NULL,
+  latitude varchar(100) NOT NULL,
+  longitude varchar(100) NOT NULL
 );
 
-INSERT INTO agency (name, location) 
-VALUES ('Lyon', '11 rue de la rue 69000');
+INSERT INTO agency (name, location, latitude, longitude) 
+VALUES ('Lyon', '11 rue de la rue 69000', '45.764042', '4.835659'),('Paris', '12 rue de la rue 75000', '48.856613', '2.352222'),
+('Marseille', '11 rue de la rue 69000', '43.296482', '5.369780'),('Nice', '13 rue de la rue 13000', '43.710175', '7.261953'),
+('Biarritz', '11 rue de la rue', '43.4832523', '1.5592776'), ('Bordeaux', '13 rue de la rue', '44.841225', '-0.5800364'),
+('Brest', '11 rue de la rue', '48.3905283', '-4.4860088');
 
 DROP TABLE IF EXISTS car; 
 

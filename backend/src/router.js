@@ -29,4 +29,8 @@ router.post(
   verifyPassword
 );
 
+const agencyControllers = require("./controllers/agencyControllers");
+
+router.get("/agency", agencyControllers.browse);
+
 module.exports = router;
