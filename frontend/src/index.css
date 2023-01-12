@@ -21,6 +21,7 @@ code {
 }
 
 .mapCard {
-  width: 40vw;
+  min-width: 40vw;
+  width: auto;
   height: 60vh;
 }

@@ -10,6 +10,7 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "esbuild-linux-64": "^0.15.18",
     "leaflet": "^1.9.3",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-geosearch": "^3.7.0",
