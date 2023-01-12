@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AgencyCard from "../../components/admin/AgencyCard";
 import circleplusicon from "../../assets/plus-circle.svg";
 
@@ -45,8 +46,13 @@ function Dashboard() {
               <img src={circleplusicon} alt="plus icon" className="w-6 mt-7" />
             </button>
           </div>
+
           {agencies?.map((agency) => (
-            <AgencyCard key={agency.id} agency={agency} />
+            <div key={agency.id} className="p-3">
+              <Link to={`/admin/agencies/${agency.id}/vehicles`}>
+                <AgencyCard agency={agency} />
+              </Link>
+            </div>
           ))}
         </div>
       </div>
