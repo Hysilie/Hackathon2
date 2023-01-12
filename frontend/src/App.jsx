@@ -16,6 +16,7 @@ import AgencyProfile from "./pages/admin/AgencyProfile";
 import Navbar from "./components/Navbar";
 import CreateVehicule from "./pages/admin/CreateVehicule";
 import CreateAgencies from "./pages/admin/CreateAgencies";
+import RentPage from "./pages/user/RentPage";
 import { useCurrentUserContext } from "./contexts/UserContext";
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
             />
           }
         />
+        <Route path="/cars/:id/rent" element={<RentPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />

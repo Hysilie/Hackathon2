@@ -25,6 +25,10 @@ function Header({
       <h1 className="text-white text-4xl drop-shadow-3xl font-semibold">
         MOVE WITH ELECTRIC
       </h1>
+
+      <div className="text-white text-xl pl-6 text-right  w-2/6">
+        by Amazon e-Fleet
+      </div>
       <div className="flex flex-row m-12">
         <input
           type="text"
