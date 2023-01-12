@@ -15,7 +15,7 @@ function VehicleCard({ vehicle }) {
   };
 
   return (
-    <div className="relative shadow-lg border  rounded-lg h-64 w-64">
+    <div className="relative shadow-lg border  rounded-lg h-full w-64">
       <button
         type="button"
         onClick={removeCar}
@@ -103,7 +103,7 @@ function VehicleCard({ vehicle }) {
         <button
           type="button"
           onClick={handleAvailablity}
-          className={`p-1 w-24 text-white rounded ${
+          className={`p-1 m-1 w-24 text-white rounded ${
             available ? "bg-main-yellow" : "bg-gray-300"
           }  `}
         >

@@ -100,7 +100,7 @@ function MyProfile() {
   return (
     <div className="h-full ">
       <button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")}
         type="button"
         className=" absolute  m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center "
       >
