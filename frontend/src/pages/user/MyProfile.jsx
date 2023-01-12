@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import backgroundForest from "../../assets/forest-background.jpg";
 import MyRental from "@components/user/MyRental";
 import { useCurrentUserContext } from "../../contexts/UserContext";
@@ -84,6 +84,19 @@ function MyProfile() {
       });
   }
 
+  /* Get my rentals */
+  const [rentals, setRentals] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5000/rentalsByUser/${user.id}`)
+      .then((res) => res.json())
+      .then((result) => {
+        console.warn(result[0]);
+        setRentals(result[0]);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
+
+  console.log(rentals);
   return (
     <div className="h-full ">
       <button
@@ -244,7 +257,12 @@ function MyProfile() {
                 </button>
               </div>
             </form>
-            <MyRental />
+
+            {rentals?.map((rental) => (
+              <div key={rental.id}>
+                <MyRental rental={rental} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
