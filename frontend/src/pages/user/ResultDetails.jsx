@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUserContext } from "../../contexts/UserContext";
 import MapBorn from "../../components/map/MapBorn";
 
 function ResultDetails({ startDate, endDate, city }) {
+  const navigate = useNavigate();
+
   const { token } = useCurrentUserContext();
   const [valuesCar, setValuesCar] = useState();
   const idParam = useParams();
@@ -85,6 +87,9 @@ function ResultDetails({ startDate, endDate, city }) {
         <div>
           <div className="flex justify-end mr-36">
             <button
+              onClick={() => {
+                navigate(`/cars/${idParam}/rent`);
+              }}
               type="button"
               className="bg-main-yellow text-white text-2xl mb-5 w-36 font-medium py-2 px-4 rounded-xl"
             >
