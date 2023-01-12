@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import CurrentUserContext from "../contexts/UserContext";
@@ -9,6 +10,10 @@ function Navbar() {
   const showOptions = () => {
     setShowLoginOptions(!showLoginOptions);
   };
+
+  const ref = useOnclickOutside(() => {
+    setShowLoginOptions(false);
+  });
 
   const { user } = useContext(CurrentUserContext);
 
@@ -69,7 +74,7 @@ function Navbar() {
         </button>
       </div>
       {showLoginOptions ? (
-        <div className="text-right absolute right-0">
+        <div className="text-right absolute right-0" ref={ref}>
           {user.email ? (
             <ul className="shadow-md rounded-bl-lg py-2 bg-white">
               <Link to="/my-profile">
@@ -84,6 +89,11 @@ function Navbar() {
                   </li>
                 </Link>
               ) : null}
+              <Link to="/charging-stations">
+                <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
+                  Charging Stations
+                </li>
+              </Link>
               <li className="bg-main-yellow hover:bg-second-yellow text-white rounded-lg pl-16 pr-4 m-4 py-2">
                 <button type="button" onClick={handleLogout}>
                   {" "}
