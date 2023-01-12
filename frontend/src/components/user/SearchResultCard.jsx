@@ -83,11 +83,11 @@ function SearchResultCard() {
 
         <div className="flex lg:flex-col flex-row justify-end mr-4">
           <p className="text-main-yellow text-3xl font-semibold m-2">60€</p>
-          <div className="w-24 bg-main-yellow m-2 p-2 rounded  text-center">
-            <Link to="/cars/1" className="p-1  text-white ">
+          <Link to="/cars/1" className="p-1  text-white ">
+            <div className="w-24 bg-main-yellow m-2 p-2 rounded  text-center">
               Rent
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
