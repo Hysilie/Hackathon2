@@ -1,3 +1,9 @@
+import MapAgency from "../components/map/MapAgency";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <MapAgency />
+    </div>
+  );
 }
