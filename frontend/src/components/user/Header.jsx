@@ -29,8 +29,7 @@ function Header({ setCars }) {
       })
       .catch((err) => console.warn(err));
   };
-  console.warn("start", typeof startDate);
-  console.warn("end", typeof endDate);
+
   return (
     <div
       className="object-cover h-96 w-full flex flex-col items-center justify-center"
