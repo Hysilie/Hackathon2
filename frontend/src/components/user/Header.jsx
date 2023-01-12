@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import forestHeader from "../../assets/forest-background.jpg";
-
 import "react-datepicker/dist/react-datepicker.css";
 
-function Header() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [city, setCity] = useState();
-
+function Header(startDate, setStartDate, endDate, setEndDate, city, setCity) {
   return (
     <div
       className="object-cover h-96 w-full flex flex-col items-center justify-center"
