@@ -13,6 +13,19 @@ class CarManager extends AbstractManager {
     );
   }
 
+  // function to get all cars by location and available on search dates
+  findAllByLocationAndDate(city, startDate, endDate) {
+    return this.connection.query(
+      `select *
+      from car 
+      JOIN agency on car.agency_id=agency.id
+      where agency.name = ? AND
+      ${this.table}.id NOT IN (SELECT car_id FROM rental WHERE 
+      ("?" NOT BETWEEN rental.departureDate AND rental.returnDate) AND ("?" NOT BETWEEN rental.departureDate AND rental.returnDate));`,
+      [city, startDate, endDate]
+    );
+  }
+
   // function to get all cars, all agencies combined
   findAllCars() {
     return this.connection.query(`select count(id) from ${this.table}`);

@@ -36,6 +36,10 @@ router.post(
 
 // CAR ROUTES
 router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get(
+  "/carbylocationanddate",
+  carControllers.browseAllCarsByLocationAndDate
+);
 router.get("/totalCars", carControllers.browseAllCars);
 router.get(
   "/totalCarsRentedByAgency/:id",
