@@ -39,7 +39,7 @@ function VehicleCard() {
       <img
         src="https://images.caradisiac.com/images/8/7/4/4/168744/S0-renault-zoe-une-serie-limitee-a-prix-agressif-553981.jpg"
         alt="Nom de la voiture"
-        className="w-32  mx-auto"
+        className="object-contain w-32 h-32 mx-auto"
       />
       <ul className="flex m-0 items-center justify-around text-sm">
         <li className="flex items-center">
