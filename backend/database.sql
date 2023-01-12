@@ -36,7 +36,7 @@ INSERT INTO agency (name, location, latitude, longitude)
 VALUES ('Lyon', '11 rue de la rue 69000', '45.764042', '4.835659'),('Paris', '12 rue de la rue 75000', '48.856613', '2.352222'),
 ('Marseille', '11 rue de la rue 69000', '43.296482', '5.369780'),('Nice', '13 rue de la rue 13000', '43.710175', '7.261953'),
 ('Biarritz', '11 rue de la rue', '43.4832523', '1.5592776'), ('Bordeaux', '13 rue de la rue', '44.841225', '-0.5800364'),
-('Brest', '11 rue de la rue', '48.3905283', '-4.4860088');
+('Caen', '15 rue de la rue', '49.1813403', '-0.3635615');
 
 DROP TABLE IF EXISTS car; 
 
