@@ -19,8 +19,10 @@ CREATE TABLE user (
   creationDate DATETIME NOT NULL DEFAULT NOW()
 );
 
-INSERT INTO user (firstname, lastname, phone, email, country, adress, dateOfBirth, numberOfIdCard, dateOfIdCard, numberOfLicense, dateOfLicense, hashedPassword)
-VALUES ('John', 'Doe', '0629764890', 'john_doe@gmail.com', 'France', '24 rue de la rue 69000 Lyon','1992-10-13', '024670', '1992-10-13', '87242', '1992-10-13', 'fezgfpeziblzjbfzliuflzibflzjbfzlkjbfliuze');
+INSERT INTO user (firstname, lastname, phone, email, country, adress, dateOfBirth, numberOfIdCard, dateOfIdCard, numberOfLicense, dateOfLicense, hashedPassword, admin, superAdmin)
+VALUES ('John', 'Doe', '0629764890', 'john_doe@gmail.com', 'France', '24 rue de la rue 69000 Lyon','1992-10-13', '024670', '1992-10-13', '87242', '1992-10-13', 'fezgfpeziblzjbfzliuflzibflzjbfzlkjbfliuze','0','0'),
+('Morgan', 'Freeman', '0629764890', 'morgan.f@gmail.com', 'France', '24 rue de la pierre 75000 Paris','1995-10-13', '024670', '1992-10-13', '87242', '1992-10-13', '$argon2id$v=19$m=65536,t=5,p=1$+I+/jTecqcBO66TI3dUi4A$i0f9wA1Rp3JQqhktX877lkkv+HGYcXTkKEkWrYNJfVs','1','0'),
+('Madeline', 'Pharma', '0629764890', 'madeline.p@gmail.com', 'France', '24 rue de la montagne 74000 Annecy','1992-10-13', '024670', '1992-10-13', '87242', '1992-10-13', '$argon2id$v=19$m=65536,t=5,p=1$+I+/jTecqcBO66TI3dUi4A$i0f9wA1Rp3JQqhktX877lkkv+HGYcXTkKEkWrYNJfVs','1','1');
 
 DROP TABLE IF EXISTS agency;
 

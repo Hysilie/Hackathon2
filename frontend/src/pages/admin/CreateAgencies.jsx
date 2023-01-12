@@ -18,7 +18,7 @@ function CreateVehicule() {
   // for alert notification error edit decision after submit
   const notify = () =>
     toast.error(
-      "Une erreure est survenue, veuillez vérifier que vous avez bien rempli tous les champs"
+      "Please fill all the fields and check if the adress is correct"
     );
 
   // fetch to get latitude and logitude by adress
@@ -168,7 +168,7 @@ function CreateVehicule() {
                 />
                 <input
                   className="appearance-none mb-2 block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
-                  type="number"
+                  type="text"
                   placeholder="City"
                   required
                   value={city}
