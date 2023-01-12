@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function SearchResultCard() {
+function SearchResultCard({ car }) {
   return (
     <div className="shadow-lg border rounded-lg lg:h-32 h-48 flex flex-row m-4">
       <img
-        src="https://images.caradisiac.com/images/8/7/4/4/168744/S0-renault-zoe-une-serie-limitee-a-prix-agressif-553981.jpg"
+        src={car ? `http://localhost:5000/car-photo/${car.photo}` : ""}
         alt="Nom de la voiture"
         className="object-contain w-32  mx-4"
       />
       <div className="flex lg:flex-row flex-col justify-between lg:items-center lg:w-full w-96 border-gray-100 border-l-2 pl-4">
         <div className="flex flex-col">
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold pl-2 mt-2">Super model S3</h2>
-            <p className="text-xs text-slate-400 pl-2 pb-2">55 000 km</p>
+            <h2 className="text-lg font-semibold pl-2 mt-2">
+              {car.model} - {car.brand}
+            </h2>
+            <p className="text-xs text-slate-400 pl-2 pb-2">
+              {car.kilometers} km
+            </p>
           </div>
 
           <div className="flex flex-row items-center">
@@ -37,7 +41,7 @@ function SearchResultCard() {
               />
             </svg>
 
-            <p>LYON</p>
+            <p>{car.name}</p>
           </div>
         </div>
         <ul className="text-sm flex lg:flex-col flex-row">
@@ -56,7 +60,7 @@ function SearchResultCard() {
                 d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
               />
             </svg>
-            <p>5</p>
+            <p>{car.maxPlace}</p>
           </li>
 
           <li className="flex flex-row items-center">
@@ -76,13 +80,15 @@ function SearchResultCard() {
             </svg>
             <p>
               {/* gear box */}
-              350kms
+              {car.autonomy}kms
             </p>
           </li>
         </ul>
 
         <div className="flex lg:flex-col flex-row justify-end mr-4">
-          <p className="text-main-yellow text-3xl font-semibold m-2">60€</p>
+          <p className="text-main-yellow text-3xl font-semibold m-2">
+            {car.pricePerDay}€
+          </p>
           <Link to="/cars/1" className="p-1  text-white ">
             <div className="w-24 bg-main-yellow m-2 p-2 rounded  text-center">
               Rent

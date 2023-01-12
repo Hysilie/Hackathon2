@@ -21,12 +21,14 @@ const { verifyEmail } = require("./middlewares/verifyEmail");
 
 // AGENCY ROUTES
 router.get("/agencies", agencyControllers.browse);
+router.post("/agencie-register", agencyControllers.add);
 
 // USER ROUTES
 router.get("/user", userControllers.browse);
 router.get("/user/bytoken", verifyToken, userControllers.findByToken);
 router.get("/user/:id", verifyToken, userControllers.read);
 router.post("/register", verifyEmail, hashPassword, userControllers.add);
+router.put("/user/:id", verifyToken, userControllers.edit);
 router.delete("/user/:id", userControllers.destroy);
 router.post(
   "/login",
@@ -36,6 +38,10 @@ router.post(
 
 // CAR ROUTES
 router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get(
+  "/carbylocationanddate",
+  carControllers.browseAllCarsByLocationAndDate
+);
 router.get("/totalCars", carControllers.browseAllCars);
 router.get(
   "/totalCarsRentedByAgency/:id",

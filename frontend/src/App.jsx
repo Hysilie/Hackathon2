@@ -14,11 +14,13 @@ import VehiculeProfile from "./pages/admin/VehiculeProfile";
 import AgencyProfile from "./pages/admin/AgencyProfile";
 import Navbar from "./components/Navbar";
 import CreateVehicule from "./pages/admin/CreateVehicule";
-/* import { useCurrentUserContext } from "./contexts/UserContext";
- */
+import CreateAgencies from "./pages/admin/CreateAgencies";
+import { useCurrentUserContext } from "./contexts/UserContext";
+
 function App() {
-  /*   const { token } = useCurrentUserContext();
-   */ return (
+  const { user } = useCurrentUserContext();
+  console.warn(user);
+  return (
     <div>
       <Navbar />
       <Routes>
@@ -26,14 +28,22 @@ function App() {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/cars" element={<SearchResults />} />
         <Route path="/cars/:id" element={<ResultDetails />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/agencies/:id/vehicles" element={<AllVehicules />} />
-        <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
-        <Route path="/admin/vehicles/create" element={<CreateVehicule />} />
-        <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />
+        {user.admin === 1 || user.superAdmin === 1 ? (
+          <>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route
+              path="/admin/agencies/:id/vehicles"
+              element={<AllVehicules />}
+            />
+            <Route path="/admin/vehicles/:id" element={<VehiculeProfile />} />
+            <Route path="/admin/vehicles/create" element={<CreateVehicule />} />
+            <Route path="/admin/agencies/create" element={<CreateAgencies />} />
+            <Route path="/admin/agencies/:id" element={<AgencyProfile />} />
+          </>
+        ) : null}
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

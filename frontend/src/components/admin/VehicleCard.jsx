@@ -15,11 +15,11 @@ function VehicleCard({ vehicle }) {
   };
 
   return (
-    <div className="relative shadow-lg border  rounded-lg h-64 w-64">
+    <div className="relative shadow-lg border rounded-lg h-full w-64">
       <button
         type="button"
         onClick={removeCar}
-        className="absolute right-0 top-0"
+        className="absolute right-2 top-2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ function VehicleCard({ vehicle }) {
         </svg>
       </button>
 
-      <h2 className="text-lg font-semibold text-center p-2">
+      <h2 className="text-lg font-semibold mt-6 pb-0 text-center p-2">
         {vehicle.brand} {vehicle.model}
       </h2>
       <img
@@ -81,7 +81,7 @@ function VehicleCard({ vehicle }) {
               d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5H18V15H4.5v-4.5zM3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"
             />
           </svg>
-          <p>
+          <p className="ml-1">
             {/* gear box */}
             {vehicle.autonomy}kms
           </p>
@@ -103,7 +103,7 @@ function VehicleCard({ vehicle }) {
         <button
           type="button"
           onClick={handleAvailablity}
-          className={`p-1 w-24 text-white rounded ${
+          className={`p-1 m-1 w-24 mb-4 text-white rounded ${
             available ? "bg-main-yellow" : "bg-gray-300"
           }  `}
         >

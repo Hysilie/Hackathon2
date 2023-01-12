@@ -51,6 +51,7 @@ const findByToken = (req, res) => {
 /* function that retrieves data with "update" by id */
 const edit = (req, res) => {
   const user = req.body;
+  console.warn("user", user);
 
   // TODO validations (length, format...)
 

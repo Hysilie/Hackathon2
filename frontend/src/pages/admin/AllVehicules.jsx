@@ -41,7 +41,7 @@ function AllVehicules() {
         <p>go back</p>
       </button>
 
-      <article className=" px-3 md:px-[15vh] pt-[15vh] pb-6  w-full flex  justify-between text-sm md:text-2xl">
+      <article className=" px-3 md:px-[15vh] pt-[15vh] pb-6  w-full flex  justify-evenly text-sm md:text-2xl">
         <h2>
           Agency : <span className="text-main-yellow"> Lyon </span>
         </h2>

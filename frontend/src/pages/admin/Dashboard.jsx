@@ -22,7 +22,7 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="grid grid-rows-2 grid-flow-col gap-4 mx-8">
+      <div className="grid grid-rows-1 grid-flow-col gap-4 mx-8">
         <div className="row-span-3 ... mt-5">
           {new Date().toLocaleDateString("fr-FR", options)}
           <div className="text-center mt-12">
@@ -40,11 +40,17 @@ function Dashboard() {
           </div>
         </div>
         <div className="col-span-2 ...">
-          <div className="flex flex-row content-center">
+          <div className="flex flex-row items-center content-center">
             <h2 className="text-3xl mt-12 mb-6 mr-3">My agencies</h2>
-            <button type="button">
-              <img src={circleplusicon} alt="plus icon" className="w-6 mt-7" />
-            </button>
+            <Link to="/admin/agencies/create">
+              <button type="button">
+                <img
+                  src={circleplusicon}
+                  alt="plus icon"
+                  className="w-6 mt-8"
+                />
+              </button>
+            </Link>
           </div>
 
           {agencies?.map((agency) => (

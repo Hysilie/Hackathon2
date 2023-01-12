@@ -1,13 +1,36 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { Link } from "react-router-dom";
 import forestHeader from "../../assets/forest-background.jpg";
-
 import "react-datepicker/dist/react-datepicker.css";
 
-function Header() {
+function Header({ setCars }) {
   const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [city, setCity] = useState();
 
+  const dateConvertedToSqlFormat = (date) => {
+    const dateConverted = new Date(date);
+    const year = dateConverted.getFullYear();
+    const month = dateConverted.getMonth() + 1;
+    const day = dateConverted.getDate();
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleclick = () => {
+    fetch(
+      `http://localhost:5000/carbylocationanddate?startDate=${dateConvertedToSqlFormat(
+        startDate
+      )}&endDate=${dateConvertedToSqlFormat(endDate)}&city=${city}`
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        setCars(result);
+      })
+      .catch((err) => console.warn(err));
+  };
+  console.warn("start", typeof startDate);
+  console.warn("end", typeof endDate);
   return (
     <div
       className="object-cover h-96 w-full flex flex-col items-center justify-center"
@@ -24,8 +47,10 @@ function Header() {
       <div className="flex flex-row m-12">
         <input
           type="text"
-          placeholder="City"
+          placeholder="Lyon, Paris, Bordeaux, ..."
           className="rounded-l-lg h-[40px] px-2"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
         />
         <DatePicker
           selected={startDate}
@@ -35,15 +60,16 @@ function Header() {
           placeholder="Start date"
         />
         <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
           disabledKeyboardNavigation
           className="h-[40px] px-2 border-l-2"
           placeholder="Return date"
         />
         <div>
-          <Link
-            to="/cars"
+          <button
+            type="button"
+            onClick={handleclick}
             className=" bg-main-yellow h-[40px] w-[40px] rounded-r-lg flex justify-center items-center"
           >
             <svg
@@ -60,7 +86,7 @@ function Header() {
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
               />
             </svg>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
