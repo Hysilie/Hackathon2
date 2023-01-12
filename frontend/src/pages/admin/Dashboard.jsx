@@ -22,7 +22,7 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="grid grid-rows-2 grid-flow-col gap-4 mx-8">
+      <div className="grid grid-rows-1 grid-flow-col gap-4 mx-8">
         <div className="row-span-3 ... mt-5">
           {new Date().toLocaleDateString("fr-FR", options)}
           <div className="text-center mt-12">
