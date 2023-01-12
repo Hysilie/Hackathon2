@@ -55,7 +55,7 @@ function MapAgency({ cars }) {
       <div className="mapCard">
         <MapContainer
           center={[resultat[0].latitude, resultat[0].longitude]}
-          zoom={11}
+          zoom={13}
           scrollWheelZoom={false}
           className="mapCard"
         >
@@ -65,7 +65,10 @@ function MapAgency({ cars }) {
           />
           <LeafletControlGeocoder />
           {cars?.map((car) => (
-            <Marker key={car.carId} position={[car.latitude, car.longitude]}>
+            <Marker
+              key={car.carId}
+              position={[car.carLatitude, car.carLongitude]}
+            >
               <Popup>
                 Adress : {car.adress}
                 <br></br>

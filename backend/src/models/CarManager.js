@@ -16,7 +16,7 @@ class CarManager extends AbstractManager {
   // function to get all cars by location and available on search dates
   findAllByLocationAndDate(city, startDate, endDate) {
     return this.connection.query(
-      `select *, car.id as carId
+      `select *, car.id as carId, car.latitude as carLatitude, car.longitude as carLongitude
       from car 
       JOIN agency on car.agency_id=agency.id
       where agency.name = ? AND
