@@ -4,9 +4,11 @@ import backgroundForest from "../../assets/forest-background.jpg";
 import MyRental from "@components/user/MyRental";
 import { useCurrentUserContext } from "../../contexts/UserContext";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function MyProfile() {
   const { user, setUser, token } = useCurrentUserContext();
+  const navigate = useNavigate();
 
   /* const avatarRef = useRef(null); */
   const [firstname, setFirstname] = useState(user.firstname);
@@ -52,10 +54,11 @@ function MyProfile() {
         }
       )
       .then((response) => {
-        console.log(response);
         response.json();
         if (response.status === 202) {
-          return response.json();
+          setTimeout(() => {
+            navigate("/home");
+          }, 2000);
         } else {
           notifyErrorProfile();
         }
@@ -83,6 +86,27 @@ function MyProfile() {
 
   return (
     <div className="h-full ">
+      <button
+        onClick={() => navigate(-1)}
+        type="button"
+        className=" absolute  m-3 md:m-6 md:left-10 w-fit text-white flex align-center justify-center "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="#FF9900"
+          className="w-8 h-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+        <p>go back</p>
+      </button>
       <div
         className="w-full h-60"
         style={{
