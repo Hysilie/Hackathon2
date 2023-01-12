@@ -12,7 +12,7 @@ export default function LeafletControlGeocoder() {
   const map = useMap();
 
   useEffect(() => {
-    const geocoder = L.Control.Geocoder.nominatim();
+    let geocoder = L.Control.Geocoder.nominatim();
     if (typeof URLSearchParams !== "undefined" && location.search) {
       // parse /?geocoder=nominatim from URL
       const params = new URLSearchParams(location.search);
