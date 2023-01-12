@@ -144,12 +144,13 @@ CREATE TABLE rental (
   returnDate datetime NOT NULL,
   user_id int,
   car_id int,
+  agency_id int,
   FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (car_id) REFERENCES car(id)
+  FOREIGN KEY (car_id) REFERENCES car(id),
+  FOREIGN KEY (agency_id) REFERENCES agency(id)
 );
 
-INSERT INTO rental (departureDate, returnDate)
-VALUES ('2022-10-13 12:12:23', '2022-10-15 12:12:23'); 
+insert into rental (departureDate, returnDate, user_id, car_id, agency_id) values ("2022-10-14 12:12:23", "2022-10-18 12:12:30", "1", "1", "1"); 
 
 
 DROP TABLE IF EXISTS invoice;
