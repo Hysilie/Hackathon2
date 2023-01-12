@@ -47,6 +47,7 @@ router.get(
   carControllers.findNonAvailableCarByAgency
 );
 router.post("/newCar", carControllers.addNewCar);
+router.put("/updateCar/:id", carControllers.editCar);
 
 router.post(
   "/carPhoto",

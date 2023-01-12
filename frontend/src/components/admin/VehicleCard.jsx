@@ -6,6 +6,8 @@ function VehicleCard({ vehicle }) {
     /* removeCar */
   };
 
+  console.warn(vehicle);
+
   const [available, setAvailable] = React.useState(true);
   const handleAvailablity = () => {
     /* handleAvailablity */
@@ -36,10 +38,12 @@ function VehicleCard({ vehicle }) {
       </button>
 
       <h2 className="text-lg font-semibold text-center p-2">
-        {vehicle[0].brand} {vehicle[0].model}
+        {vehicle.brand} {vehicle.model}
       </h2>
       <img
-        src="https://images.caradisiac.com/images/8/7/4/4/168744/S0-renault-zoe-une-serie-limitee-a-prix-agressif-553981.jpg"
+        src={
+          vehicle ? `http://localhost:5000/car-photo/${vehicle.photo}` : null
+        }
         alt="Nom de la voiture"
         className="object-contain w-32 h-32 mx-auto"
       />
@@ -59,7 +63,7 @@ function VehicleCard({ vehicle }) {
               d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
             />
           </svg>
-          <p>{vehicle[0].maxPlace}</p>
+          <p>{vehicle.maxPlace}</p>
         </li>
 
         <li className="flex items-center">
@@ -79,7 +83,7 @@ function VehicleCard({ vehicle }) {
           </svg>
           <p>
             {/* gear box */}
-            {vehicle[0].autonomy}kms
+            {vehicle.autonomy}kms
           </p>
         </li>
         <li className="flex items-center">
