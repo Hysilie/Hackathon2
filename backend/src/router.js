@@ -27,6 +27,9 @@ router.post(
   verifyPassword
 );
 
+const agencyControllers = require("./controllers/agencyControllers");
+
+router.get("/agency", agencyControllers.browse);
 router.post(
   "/carPhoto",
   verifyToken,
