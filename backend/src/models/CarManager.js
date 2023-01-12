@@ -37,7 +37,7 @@ class CarManager extends AbstractManager {
   // ADD a new car
   insert(car) {
     return this.connection.query(
-      `insert into ${this.table} (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, pricePerDay, agency_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, pricePerDay, agency_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         car.typeOfCar,
         car.brand,
@@ -51,7 +51,6 @@ class CarManager extends AbstractManager {
         car.power,
         car.maxPlace,
         car.optionCar,
-        car.locationCar,
         car.pricePerDay,
         car.agency_id,
       ]

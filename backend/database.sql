@@ -54,7 +54,7 @@ CREATE TABLE car (
   power int NOT NULL,
   maxPlace int NOT NULL,
   optionCar text,
-  locationCar text NOT NULL,
+  locationCar text NULL,
   available boolean NOT NULL DEFAULT 1,
   pricePerDay int NOT NULL,
   agency_id int NOT NULL,
