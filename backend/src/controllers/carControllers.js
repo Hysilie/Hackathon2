@@ -17,6 +17,23 @@ const browseAllCarsByAgency = (req, res) => {
     });
 };
 
+/* function that retrieves data with "get" by id */
+const read = (req, res) => {
+  models.car
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const browseAllCarsByLocationAndDate = (req, res) => {
   const { city, startDate, endDate } = req.query;
 
@@ -36,6 +53,18 @@ const browseAllCarsByLocationAndDate = (req, res) => {
         res.sendStatus(500);
       });
   } else res.sendStatus(400);
+};
+
+const browseCars = (req, res) => {
+  models.car
+    .findAll()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
 };
 
 const browseAllCars = (req, res) => {
@@ -153,7 +182,9 @@ const deleteCar = (req, res) => {
 
 module.exports = {
   browseAllCarsByAgency,
+  read,
   browseAllCarsByLocationAndDate,
+  browseCars,
   browseAllCars,
   browseCarRentedByAgency,
   findNonAvailableCarByAgency,

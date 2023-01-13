@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import forestBackground from "../assets/forest-background.jpg";
 import { useCurrentUserContext } from "../contexts/UserContext";
 
@@ -34,12 +35,17 @@ function Login() {
     };
 
     if (email && password) {
-      fetch("http://localhost:5000/login", requestOptions)
+      toast
+        .promise(fetch("http://localhost:5000/login", requestOptions), {
+          loading: "Connecting",
+          success: "You are logged in",
+          error: "Server error occurred while connecting",
+        })
         .then((response) => response.json())
         .then((result) => {
           localStorage.setItem("token", result.token);
           setUser(result.user);
-          navigate("/");
+          setTimeout(() => navigate("/"), 900);
         })
         .catch(console.error);
     }
@@ -56,6 +62,7 @@ function Login() {
         backgroundPosition: "center",
       }}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       <button
         onClick={() => navigate(-1)}
         type="button"

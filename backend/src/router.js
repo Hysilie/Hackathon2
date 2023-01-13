@@ -17,6 +17,7 @@ const {
   verifyPassword,
   verifyToken,
 } = require("./middlewares/auth");
+
 const { verifyEmail } = require("./middlewares/verifyEmail");
 
 // AGENCY ROUTES
@@ -38,10 +39,12 @@ router.post(
 
 // CAR ROUTES
 router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get("/car/:id", verifyToken, carControllers.read);
 router.get(
   "/carbylocationanddate",
   carControllers.browseAllCarsByLocationAndDate
 );
+router.get("/cars", carControllers.browseCars);
 router.get("/totalCars", carControllers.browseAllCars);
 router.get(
   "/totalCarsRentedByAgency/:id",
@@ -67,5 +70,6 @@ router.delete("/deleteCar/:id", carControllers.deleteCar);
 // RENTAL ROUTES
 router.get("/allRentals", rentalControllers.browse);
 router.get("/rentalsByUser/:id", rentalControllers.rentalsByUser);
+router.post("/addrentalcar", rentalControllers.rentalCarByUser);
 
 module.exports = router;

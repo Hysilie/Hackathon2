@@ -1,5 +1,6 @@
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 import ForgottenPassword from "./pages/user/ForgottenPassword";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
@@ -21,17 +22,78 @@ import { useCurrentUserContext } from "./contexts/UserContext";
 
 function App() {
   const { user } = useCurrentUserContext();
+  const [cars, setCars] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [city, setCity] = useState();
+
+  const dateConvertedToSqlFormat = (date) => {
+    const dateConverted = new Date(date);
+    const year = dateConverted.getFullYear();
+    const month = dateConverted.getMonth() + 1;
+    const day = dateConverted.getDate();
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleclick = () => {
+    fetch(
+      `http://localhost:5000/carbylocationanddate?startDate=${dateConvertedToSqlFormat(
+        startDate
+      )}&endDate=${dateConvertedToSqlFormat(endDate)}&city=${city}`
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        setCars(result);
+      })
+      .catch((err) => console.warn(err));
+  };
+
+  const backToHome = () => {
+    setCars([]);
+  };
+
+  console.warn("start", startDate);
+  console.warn("end", endDate);
   console.warn(user);
   return (
     <div>
-      <Navbar />
+      <Navbar backToHome={backToHome} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              cars={cars}
+              startDate={startDate}
+              endDate={endDate}
+              city={city}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              setCity={setCity}
+              handleclick={handleclick}
+            />
+          }
+        />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/charging-stations" element={<MapBornToALive />} />
         <Route path="/cars" element={<SearchResults />} />
-        <Route path="/cars/:id" element={<ResultDetails />} />
-        <Route path="/cars/:id/rent" element={<RentPage />} />
+        <Route
+          path="/cars/:id"
+          element={
+            <ResultDetails
+              startDate={startDate}
+              endDate={endDate}
+              city={city}
+            />
+          }
+        />
+        <Route
+          path="/cars/:id/rent"
+          element={
+            <RentPage startDate={startDate} endDate={endDate} city={city} />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />

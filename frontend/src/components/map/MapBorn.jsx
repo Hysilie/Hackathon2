@@ -34,7 +34,7 @@ function MapBorn() {
     <div className="h-auto">
       <div className="mapCard">
         <MapContainer
-          center={["49.4404591", "1.0939658"]}
+          center={["49.1813403", "-0.3635615"]}
           zoom={13}
           scrollWheelZoom={false}
           className="mapCard"

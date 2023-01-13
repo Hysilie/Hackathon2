@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import backgroundForest from "../../assets/forest-background.jpg";
 import MyRental from "@components/user/MyRental";
 import { useCurrentUserContext } from "../../contexts/UserContext";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function MyProfile() {
@@ -23,7 +23,8 @@ function MyProfile() {
     toast.error("Une erreur est survenue, veuillez vérifier vos informations");
 
   function sendUserInformations(e) {
-    const myHeaders = new Headers();
+    /*     e.preventDefault();
+     */ const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
     myHeaders.append("Content-Type", "application/json");
 
@@ -46,18 +47,18 @@ function MyProfile() {
           body: raw,
           headers: myHeaders,
         }),
-
         {
-          loading: "Envoi en cours",
-          success: "Votre profil modifié a bien été envoyé",
-          error: "Une erreur sur le serveur est survenue lors de l'envoi",
+          loading: "En cours",
+          success: "Profil edited",
+          error: "Error",
         }
       )
       .then((response) => {
         response.json();
+        console.log(response);
         if (response.status === 202) {
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 2000);
         } else {
           notifyErrorProfile();
@@ -65,6 +66,7 @@ function MyProfile() {
       })
       .then((results) => {
         console.log("results", results);
+
         setUser({
           ...user,
           firstname: results.firstname,
@@ -76,7 +78,7 @@ function MyProfile() {
           dateOfBirth: results.dateOfBirth,
         });
         setTimeout(() => {
-          navigate("/");
+          navigate("/my-profile");
         }, 2000);
       })
       .catch((error) => {
@@ -99,6 +101,7 @@ function MyProfile() {
   console.log(rentals);
   return (
     <div className="h-full ">
+      <Toaster position="top-center" reverseOrder={false} />
       <button
         onClick={() => navigate("/")}
         type="button"
@@ -186,9 +189,7 @@ function MyProfile() {
                 <input
                   name="birthday"
                   className="text-gray-700"
-                  placeholder={
-                    user.dateOfBirth ? user.dateOfBirth : "DD/MM/YYYY"
-                  }
+                  placeholder={"DD/MM/YYYY"}
                   onChange={(e) => setDateOfBirth(e.target.value)}
                   value={dateOfBirth}
                 />
