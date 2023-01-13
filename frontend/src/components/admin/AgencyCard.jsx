@@ -37,7 +37,7 @@ function AgencyCard({ agency }) {
         <div className="flex flex-row justify-evenly">
           <div>
             Fleet:{" "}
-            <span className="text-main-yellow">{carsByAgency[0]?.length}</span>
+            <span className="text-main-yellow">{carsByAgency?.length}</span>
           </div>
           <div>
             Rented: <span className="text-main-yellow">{rentedCars}</span>
