@@ -13,5 +13,21 @@ class RentalManager extends AbstractManager {
       [id]
     );
   }
+
+  addRentalCar(carRented) {
+    return (
+      this.connection.query(
+        `insert into ${this.table} (departureDate, returnDate, user_id, car_id, agency_id)
+        inner join user on rental.user_id = rental.id`
+      ),
+      [
+        carRented.departureDate,
+        carRented.returnDate,
+        carRented.user_id,
+        carRented.car_id,
+        carRented.agency_id,
+      ]
+    );
+  }
 }
 module.exports = RentalManager;
