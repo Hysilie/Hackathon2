@@ -61,13 +61,12 @@ class CarManager extends AbstractManager {
   // ADD a new car
   insert(car) {
     return this.connection.query(
-      `insert into ${this.table} (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, pricePerDay, agency_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (typeOfCar, brand, model, yearCar, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, pricePerDay, agency_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         car.typeOfCar,
         car.brand,
         car.model,
         car.yearCar,
-        car.photo,
         car.matriculation,
         car.kilometers,
         car.autonomy,
@@ -93,6 +92,12 @@ class CarManager extends AbstractManager {
     return this.connection.query(
       `update ${this.table} set photo = ? where id = ?`,
       [carPhoto, id]
+    );
+  }
+
+  findLastCar() {
+    return this.connection.query(
+      `select * from ${this.table} ORDER BY id DESC LIMIT 1`
     );
   }
 }

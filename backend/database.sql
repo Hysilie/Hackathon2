@@ -48,7 +48,7 @@ CREATE TABLE car (
   brand varchar(60) NOT NULL,
   model varchar(60) NOT NULL,
   yearCar int NOT NULL,
-  photo text NOT NULL,
+  photo varchar(500) DEFAULT "renault-zoe.png",
   matriculation varchar(30) NOT NULL,
   kilometers int NOT NULL,
   autonomy varchar(20) NOT NULL,
