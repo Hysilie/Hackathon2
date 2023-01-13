@@ -12,13 +12,13 @@ function AgencyCard({ agency }) {
         <div className="mb-4">{agency.location}</div>
         <div className="flex flex-row justify-evenly">
           <div>
-            Fleet: <spans className="text-main-yellow">60</spans>
+            Fleet: <spans className="text-main-yellow">7</spans>
           </div>
           <div>
-            Rented: <spans className="text-main-yellow">2</spans>
+            Rented: <spans className="text-main-yellow">1</spans>
           </div>
           <div>
-            Unavailable: <spans className="text-main-yellow">100</spans>
+            Unavailable: <spans className="text-main-yellow">0</spans>
           </div>
         </div>
         <button onClick={() => navigate("/admin/vehicles")} type="button">

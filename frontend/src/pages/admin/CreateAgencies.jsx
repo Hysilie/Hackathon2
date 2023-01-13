@@ -77,7 +77,7 @@ function CreateVehicule() {
         console.warn(response.status);
         if (response.status === 201) {
           setTimeout(() => {
-            navigate("/");
+            navigate("/admin/dashboard");
           }, 2000);
         } else {
           notify();
