@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import CurrentUserContext from "../contexts/UserContext";
 
-function Navbar() {
+function Navbar({ backToHome }) {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
 
   const showOptions = () => {
@@ -31,7 +31,9 @@ function Navbar() {
     <div>
       <div className="h-16 py-3 flex flex-row justify-between shadow-md relative">
         <Link to="/">
-          <img src={logo} alt="logo" className="h-10 mx-4" />
+          <button type="button" onClick={backToHome}>
+            <img src={logo} alt="logo" className="h-10 mx-4" />
+          </button>
         </Link>
 
         <button
