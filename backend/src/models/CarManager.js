@@ -39,7 +39,9 @@ class CarManager extends AbstractManager {
 
   // function to get all cars, all agencies combined
   findAllCars() {
-    return this.connection.query(`select count(id) from ${this.table}`);
+    return this.connection.query(
+      `select count(id) as count from ${this.table}`
+    );
   }
 
   // function to get all actual rented cars by agency
