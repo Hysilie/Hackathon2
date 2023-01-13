@@ -46,7 +46,7 @@ function AllVehicules() {
           Agency : <span className="text-main-yellow"> Lyon </span>
         </h2>
         <h2>
-          Fleet :<span className="text-main-yellow"> {vehicles.length}</span>
+          Fleet :<span className="text-main-yellow"> {vehicles?.length}</span>
         </h2>
         <button
           type="button"
