@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Bill from "@components/user/Bill";
 import forestBackground from "../../assets/forest-background.jpg";
 import { useCurrentUserContext } from "../../contexts/UserContext";
+import { format } from "prettier";
 
 export default function RentPage({ startDate, endDate }) {
   const notify = () =>
@@ -31,7 +32,9 @@ export default function RentPage({ startDate, endDate }) {
 
     fetch(`http://localhost:5000/car/${idParam.id}`, requestOptions)
       .then((response) => response.json())
-      .then((result) => setValuesCar(result))
+      .then((result) => {
+        setValuesCar(result);
+      })
       .catch((error) => console.warn("error", error));
   }, []);
 
@@ -47,6 +50,18 @@ export default function RentPage({ startDate, endDate }) {
     return diffDays;
   };
 
+  const dateConvertedToSqlFormat = (date) => {
+    const dateConverted = new Date(date);
+    const year = dateConverted.getFullYear();
+    const month = dateConverted.getMonth() + 1;
+    const day = dateConverted.getDate();
+
+    return `${year}-${month}-${day}`;
+  };
+
+  console.log(`startDate`, startDate);
+  console.log(`enDate`, endDate);
+
   const submitInformations = (e) => {
     e.preventDefault();
 
@@ -56,21 +71,21 @@ export default function RentPage({ startDate, endDate }) {
     }
 
     const myHeaders = new Headers();
-    myHeaders
-      .append("Content-Type", "application/json")
-      .append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
 
     const bodyRaw = JSON.stringify({
-      startDate: startDate,
-      endDate: endDate,
-      carId: idParam.id,
-      angecyId: valuesCar.agency_id,
-      userId: user.id,
+      departureDate: dateConvertedToSqlFormat(startDate),
+      returnDate: dateConvertedToSqlFormat(endDate),
+      car_id: idParam.id,
+      agency_id: valuesCar?.agency_id,
+      user_id: user.id,
     });
+
+    console.log(bodyRaw);
 
     toast
       .promise(
-        fetch("http://localhost:5000/", {
+        fetch("http://localhost:5000/addrentalcar", {
           method: "POST",
           headers: myHeaders,
           body: bodyRaw,
@@ -104,7 +119,7 @@ export default function RentPage({ startDate, endDate }) {
     return `${year}-${month}-${day}`;
   };
 
-  console.log(`valuecar`, valuesCar.agency_id);
+  console.log(`valuecar`, valuesCar?.agency_id);
 
   return (
     valuesCar && (
