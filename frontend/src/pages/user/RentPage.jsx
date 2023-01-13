@@ -8,17 +8,16 @@ import forestBackground from "../../assets/forest-background.jpg";
 import { useCurrentUserContext } from "../../contexts/UserContext";
 
 export default function RentPage({ startDate, endDate }) {
+  const notify = () =>
+    toast.error(
+      "Please check your dates, this car is not available for this period !"
+    );
   const navigate = useNavigate();
   const { user } = useCurrentUserContext();
   const { token } = useCurrentUserContext();
   const [showModal, setShowModal] = useState(false);
   const [showBill, setShowBill] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const submitInformations = (e) => {
-    e.preventDefault();
-    setProcessing(true);
-    setTimeout(() => setShowBill(true), 1000);
-  };
 
   const [valuesCar, setValuesCar] = useState();
   const idParam = useParams();
@@ -48,6 +47,54 @@ export default function RentPage({ startDate, endDate }) {
     return diffDays;
   };
 
+  const submitInformations = (e) => {
+    e.preventDefault();
+
+    if (!user) {
+      goLoggin();
+      return;
+    }
+
+    const myHeaders = new Headers();
+    myHeaders
+      .append("Content-Type", "application/json")
+      .append("Authorization", `Bearer ${token}`);
+
+    const bodyRaw = JSON.stringify({
+      startDate: startDate,
+      endDate: endDate,
+      carId: idParam.id,
+      angecyId: valuesCar.agency_id,
+      userId: user.id,
+    });
+
+    toast
+      .promise(
+        fetch("http://localhost:5000/", {
+          method: "POST",
+          headers: myHeaders,
+          body: bodyRaw,
+          redirect: "follow",
+        }),
+        {
+          loading: "Your rent is being processed",
+          success: "Your rent is confirmed, you can check your bill !",
+          error: "Error while reserving",
+        }
+      )
+      .then((response) => {
+        if (response.status === 201) {
+          setProcessing(true);
+          setTimeout(() => setShowBill(true), 1000);
+        } else {
+          notify();
+        }
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
+  };
+
   const dateConverte = (date) => {
     const dateConverted = new Date(date);
     const year = dateConverted.getFullYear();
@@ -56,6 +103,8 @@ export default function RentPage({ startDate, endDate }) {
 
     return `${year}-${month}-${day}`;
   };
+
+  console.log(`valuecar`, valuesCar.agency_id);
 
   return (
     valuesCar && (
