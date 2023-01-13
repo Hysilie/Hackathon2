@@ -4,7 +4,7 @@ function MyRental({ rental }) {
   return (
     <div className="shadow-lg border rounded-lg lg:h-32 h-48 flex flex-row m-4">
       <img
-        src="https://images.caradisiac.com/images/8/7/4/4/168744/S0-renault-zoe-une-serie-limitee-a-prix-agressif-553981.jpg"
+        src={rental ? `http://localhost:5000/car-photo/${rental.photo}` : ""}
         alt="Nom de la voiture"
         className="object-contain w-32  mx-4"
       />

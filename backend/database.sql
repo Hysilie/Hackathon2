@@ -134,16 +134,16 @@ VALUES ('Berline', 'Renault', 'Zoe', 2018, 'renault-zoe.png', 'AZ-354-BK', 10082
 ('SUV', 'Tesla', 'x', 2020, 'tesla-x.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '36 Rue Roger Radisson, 69005 Lyon',1, 250, '45.761328456542515', '4.817592720068409', 6,0),
 ('SUV', 'Tesla', 'y', 2020, 'tesla-y.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '36 Rue Roger Radisson, 69005 Lyon',1, 250, '45.761328456542515', '4.817592720068409', 6,0), 
 ('Berline', 'Renault', 'Zoe', 2018, 'renault-zoe.png', 'AZ-354-BK', 10082, 390, 'automatic', 90, 5, 'camera', '51 Rue de Geôle, 14000 Caen',1, 80, '49.184988517219395', '-0.3638734912292674', 7,0),
-('SUV', 'Audi', 'Q4', 2021, 'aud-etron-q4.png', 'AZ-734-BK', 5083, 513, 'automatic', 95, 5, 'camera', '38 Route de Trouville, 14120 Mondeville',1, 210, '49.17587104375212', '-0.33316486657045896', 7,0),
-('SUV', 'Audi', 'E-TRON SPORTBACK', 2021, 'aud-etron-sportback.png', 'JS-736-BG', 7468, 513, 'automatic', 95, 5, 'camera', '29 Rue Georges Gaillard, 14000 Caen',1, 250, '49.1670742706659', '-0.35450288902842075', 7,0),
-('SUV', 'BMW', 'i4', 2021, 'bmw-i4.png', 'BH-736-MA', 6283, 513, 'automatic', 95, 5, 'camera', '49 Rue du Maréchal Gallieni, 14000 Caen',1, 250, '49.17629777493661', '-0.3969287052236803', 7,0),
-('SUV', 'BMW', 'ix3', 2022, 'bmw-ix3.png', 'JS-729-KP', 8290, 600, 'automatic', 95, 5, 'camera', '16 Rue Robert Tournières, 14000 Caen,',1, 250, '49.18452309220607', '-0.38945922345087647', 7,0),
-('Berline', 'Peugeot', 'e208', 2020, 'peugeot-e208.png', 'JE-923-MA', 1258, 400, 'automatic', 95, 5, 'camera', '25 Rue du Vingtième Siècle, 14000 Caen',1, 250, '49.18749567938887', '-0.3714693230597277', 7,0),
-('SUV', 'Citroen', 'ec4', 2020, 'citroen-ec4.png', 'MA-923-KP', 9304, 400, 'automatic', 95, 5, 'camera', '202 bis Rue Caponière, 14000 Caen',1, 250, '49.17596616493577', '-0.38552352727711403', 7,0),
+('SUV', 'Audi', 'Q4', 2021, 'aud-etron-q4.png', 'AZ-734-BK', 5083, 513, 'automatic', 95, 5, 'camera', '38 Route de Trouville, 14120 Mondeville',1, 150, '49.17587104375212', '-0.33316486657045896', 7,0),
+('SUV', 'Audi', 'E-TRON SPORTBACK', 2021, 'aud-etron-sportback.png', 'JS-736-BG', 7468, 513, 'automatic', 95, 5, 'camera', '29 Rue Georges Gaillard, 14000 Caen',1, 180, '49.1670742706659', '-0.35450288902842075', 7,0),
+('SUV', 'BMW', 'i4', 2021, 'bmw-i4.png', 'BH-736-MA', 6283, 513, 'automatic', 95, 5, 'camera', '49 Rue du Maréchal Gallieni, 14000 Caen',1, 210, '49.17629777493661', '-0.3969287052236803', 7,0),
+('SUV', 'BMW', 'ix3', 2022, 'bmw-ix3.png', 'JS-729-KP', 8290, 600, 'automatic', 95, 5, 'camera', '16 Rue Robert Tournières, 14000 Caen,',1, 230, '49.18452309220607', '-0.38945922345087647', 7,0),
+('Berline', 'Peugeot', 'e208', 2020, 'peugeot-e208.png', 'JE-923-MA', 1258, 400, 'automatic', 95, 5, 'camera', '25 Rue du Vingtième Siècle, 14000 Caen',1, 240, '49.18749567938887', '-0.3714693230597277', 7,0),
+('SUV', 'Citroen', 'ec4', 2020, 'citroen-ec4.png', 'MA-923-KP', 9304, 400, 'automatic', 95, 5, 'camera', '202 bis Rue Caponière, 14000 Caen',1, 240, '49.17596616493577', '-0.38552352727711403', 7,0),
 ('SUV', 'Peugeot', 'e2008', 2020, 'peugeot-e2008.png', 'NF-748-KP', 29832, 340, 'automatic', 95, 5, 'camera', '48 Rue de Bretagne, 14000 Caen',1, 250, '49.18250283441284', '-0.3806934951203811', 7,0),
-('SUV', 'Tesla', 's', 2020, 'tesla-s.png', 'NF-748-KP', 1832, 340, 'automatic', 95, 5, 'camera', '9 Rue Gémare, 14000 Caen',1, 250, '49.18412005685736', '-0.3645648639165877', 7,0),
-('SUV', 'Tesla', 'x', 2020, 'tesla-x.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '61 Rue de l Oratoire, 14000 Caen',1, 250, '49.18018665528449', '-0.3618172907792605', 7,0),
-('SUV', 'Tesla', 'y', 2020, 'tesla-y.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '110 Rue Caponière, 14000 Caen',1, 250, '49.179264042920835', '-0.3787051349981896', 7,0);
+('SUV', 'Tesla', 's', 2020, 'tesla-s.png', 'NF-748-KP', 1832, 340, 'automatic', 95, 5, 'camera', '9 Rue Gémare, 14000 Caen',1, 260, '49.18412005685736', '-0.3645648639165877', 7,0),
+('SUV', 'Tesla', 'x', 2020, 'tesla-x.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '61 Rue de l Oratoire, 14000 Caen',1, 270, '49.18018665528449', '-0.3618172907792605', 7,0),
+('SUV', 'Tesla', 'y', 2020, 'tesla-y.png', 'MA-263-FS', 12724, 340, 'automatic', 95, 5, 'camera', '110 Rue Caponière, 14000 Caen',1, 270, '49.179264042920835', '-0.3787051349981896', 7,0);
  
 DROP TABLE IF EXISTS rental;
 
