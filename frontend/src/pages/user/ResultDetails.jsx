@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { useCurrentUserContext } from "../../contexts/UserContext";
 import MapBorn from "../../components/map/MapBorn";
 
 function ResultDetails({ startDate, endDate, city }) {
   const navigate = useNavigate();
 
-  const { token } = useCurrentUserContext();
+  const { token, user } = useCurrentUserContext();
   const [valuesCar, setValuesCar] = useState();
   const idParam = useParams();
   useEffect(() => {
@@ -44,9 +45,16 @@ function ResultDetails({ startDate, endDate, city }) {
     return `${year}-${month}-${day}`;
   };
 
+  const goLoggin = () => {
+    toast.error("! Please, log in or register to rent a car !");
+    setTimeout(() => navigate("/registration"), 1000);
+  };
+
   return (
     valuesCar && (
       <div>
+        <Toaster position="top-center" reverseOrder={false} />
+
         <h1 className="uppercase underline text-center mt-8 text-2xl">
           <span className="font-semibold">{city}</span> -{" "}
           {dateConverte(startDate)} <span className="text-main-yellow">to</span>{" "}
@@ -86,15 +94,23 @@ function ResultDetails({ startDate, endDate, city }) {
         </div>
         <div>
           <div className="flex justify-end mr-36">
-            <button
-              onClick={() => {
-                navigate(`/cars/${idParam}/rent`);
-              }}
-              type="button"
-              className="bg-main-yellow text-white text-2xl mb-5 w-36 font-medium py-2 px-4 rounded-xl"
-            >
-              RENT
-            </button>
+            {user.email ? (
+              <button
+                onClick={() => navigate(`/cars/${idParam.id}/rent`)}
+                type="button"
+                className="bg-main-yellow text-white text-2xl mb-5 w-36 font-medium py-2 px-4 rounded-xl"
+              >
+                RENT
+              </button>
+            ) : (
+              <button
+                onClick={goLoggin}
+                type="button"
+                className="bg-main-yellow text-white text-2xl mb-5 w-36 font-medium py-2 px-4 rounded-xl"
+              >
+                RENT
+              </button>
+            )}
           </div>
         </div>
         <MapBorn />

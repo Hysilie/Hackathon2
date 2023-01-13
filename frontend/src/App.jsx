@@ -88,7 +88,12 @@ function App() {
             />
           }
         />
-        <Route path="/cars/:id/rent" element={<RentPage />} />
+        <Route
+          path="/cars/:id/rent"
+          element={
+            <RentPage startDate={startDate} endDate={endDate} city={city} />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />
