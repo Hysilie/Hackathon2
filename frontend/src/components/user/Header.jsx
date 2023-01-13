@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+import { Link } from "react-router-dom";
 import forestHeader from "../../assets/forest-background.jpg";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -52,26 +53,28 @@ function Header({
           placeholder="Return date"
         />
         <div>
-          <button
-            type="button"
-            onClick={handleclick}
-            className=" bg-main-yellow h-[40px] w-[40px] rounded-r-lg flex justify-center items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 stroke-white "
+          <Link to="/">
+            <button
+              type="button"
+              onClick={handleclick}
+              className=" bg-main-yellow h-[40px] w-[40px] rounded-r-lg flex justify-center items-center"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 stroke-white "
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
