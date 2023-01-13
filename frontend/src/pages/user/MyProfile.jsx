@@ -23,8 +23,8 @@ function MyProfile() {
     toast.error("Une erreur est survenue, veuillez vérifier vos informations");
 
   function sendUserInformations(e) {
-    e.preventDefault();
-    const myHeaders = new Headers();
+    /*     e.preventDefault();
+     */ const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
     myHeaders.append("Content-Type", "application/json");
 
@@ -58,7 +58,7 @@ function MyProfile() {
         console.log(response);
         if (response.status === 202) {
           setTimeout(() => {
-            navigate("/home");
+            navigate("/");
           }, 2000);
         } else {
           notifyErrorProfile();
@@ -78,7 +78,7 @@ function MyProfile() {
           dateOfBirth: results.dateOfBirth,
         });
         setTimeout(() => {
-          navigate("/");
+          navigate("/my-profile");
         }, 2000);
       })
       .catch((error) => {
