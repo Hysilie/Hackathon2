@@ -28,4 +28,17 @@ const rentalsByUser = (req, res) => {
     });
 };
 
-module.exports = { browse, rentalsByUser };
+const rentalCarByUser = (req, res) => {
+  models.rental
+    .addRentalCar(req.body)
+    .then(([result]) => {
+      res.location(`/rental/${result.insertId}`);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+module.exports = { browse, rentalsByUser, rentalCarByUser };
