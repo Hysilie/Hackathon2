@@ -71,5 +71,6 @@ router.delete("/deleteCar/:id", carControllers.deleteCar);
 // RENTAL ROUTES
 router.get("/allRentals", rentalControllers.browse);
 router.get("/rentalsByUser/:id", rentalControllers.rentalsByUser);
+router.post("/addrentalcar", rentalControllers.rentalCarByUser);
 
 module.exports = router;

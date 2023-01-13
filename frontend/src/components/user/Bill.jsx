@@ -4,9 +4,16 @@ import React from "react";
 import logo from "../../assets/logo.svg";
 import { useCurrentUserContext } from "../../contexts/UserContext";
 
-function Bill() {
+function Bill({
+  startDate,
+  endDate,
+  valuesCar,
+  dateConverte,
+  dateSoustraction,
+}) {
   const { user } = useCurrentUserContext();
 
+  console.log(startDate, endDate);
   return (
     <section className="py-2">
       <div className="max-w-5xl mx-auto bg-white">
@@ -32,7 +39,7 @@ function Bill() {
                     <p className="w-13 h-14  break-words">
                       M. Mrs. {user.lastname}
                       <br />
-                      {user.adress}
+                      {user.firstname}
                     </p>
                   </div>
                   <div className="text-sm font-light text-slate-500">
@@ -53,16 +60,16 @@ function Bill() {
                     <p className="mt-2 text-sm font-normal text-slate-700">
                       Date of Issue
                     </p>
-                    <p>22.01.23</p>
+                    <p> {dateConverte(startDate)}</p>
                   </div>
                   <div className="text-sm font-light text-slate-500">
                     <p className="text-sm font-normal text-slate-700">Terms</p>
-                    <p>7 Days</p>
+                    <p>min. 7 Days</p>
 
                     <p className="mt-2 text-sm font-normal text-slate-700">
                       Due
                     </p>
-                    <p>29.01.23</p>
+                    <p>{dateConverte(endDate)}</p>
                   </div>
                 </div>
               </div>
@@ -103,20 +110,22 @@ function Bill() {
                     <tr className="border-b border-slate-200">
                       <td className=" pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
                         <div className="font-medium text-slate-700">
-                          Tesla Truck
+                          {valuesCar.brand} {valuesCar.model}
                         </div>
                         <div className="mt-0.5 text-slate-500 sm:hidden">
-                          1 unit at $0.00
+                          1 unit at 0.00€
                         </div>
                       </td>
                       <td className="hidden px-3 py-4 text-sm text-right text-slate-500 sm:table-cell">
                         1
                       </td>
                       <td className="hidden px-3 py-4 text-sm text-right text-slate-500 sm:table-cell">
-                        15€
+                        20%
                       </td>
                       <td className="py-4 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        15€
+                        {dateSoustraction(startDate, endDate) *
+                          valuesCar.pricePerDay}
+                        €
                       </td>
                     </tr>
                   </tbody>
@@ -136,7 +145,9 @@ function Bill() {
                         Subtotal
                       </th>
                       <td className="pt-6 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        15.00€
+                        {dateSoustraction(startDate, endDate) *
+                          valuesCar.pricePerDay}
+                        €
                       </td>
                     </tr>
                     <tr>
@@ -154,7 +165,7 @@ function Bill() {
                         Discount
                       </th>
                       <td className="pt-6 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        5.00€
+                        0.00€
                       </td>
                     </tr>
                     <tr>
@@ -172,7 +183,7 @@ function Bill() {
                         Tax
                       </th>
                       <td className="pt-4 pl-3 pr-4 text-sm text-right text-slate-500 sm:pr-6 md:pr-0">
-                        2.00€
+                        30.00€
                       </td>
                     </tr>
                     <tr>
@@ -190,7 +201,10 @@ function Bill() {
                         Total
                       </th>
                       <td className="pt-4 pl-3 pr-4 text-sm font-normal text-right text-slate-700 sm:pr-6 md:pr-0">
-                        11€
+                        {dateSoustraction(startDate, endDate) *
+                          valuesCar.pricePerDay +
+                          30}
+                        €
                       </td>
                     </tr>
                   </tfoot>

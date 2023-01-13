@@ -49,12 +49,16 @@ function App() {
       .catch((err) => console.warn(err));
   };
 
+  const backToHome = () => {
+    setCars([]);
+  };
+
   console.warn("start", startDate);
   console.warn("end", endDate);
   console.warn(user);
   return (
     <div>
-      <Navbar />
+      <Navbar backToHome={backToHome} />
       <Routes>
         <Route
           path="/"
@@ -84,7 +88,12 @@ function App() {
             />
           }
         />
-        <Route path="/cars/:id/rent" element={<RentPage />} />
+        <Route
+          path="/cars/:id/rent"
+          element={
+            <RentPage startDate={startDate} endDate={endDate} city={city} />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/forgotten-password" element={<ForgottenPassword />} />
