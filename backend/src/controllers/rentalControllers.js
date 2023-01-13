@@ -29,8 +29,9 @@ const rentalsByUser = (req, res) => {
 };
 
 const rentalCarByUser = (req, res) => {
+  const car = req.body;
   models.rental
-    .addRentalCar(req.body)
+    .addRentalCarByUser(car)
     .then(([result]) => {
       res.location(`/rental/${result.insertId}`);
       res.sendStatus(201);
