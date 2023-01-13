@@ -15,10 +15,8 @@ class RentalManager extends AbstractManager {
   }
 
   addRentalCarByUser(carRented) {
-    return (
-      this.connection.query(
-        `insert into ${this.table} (departureDate, returnDate, user_id, car_id, agency_id)`
-      ),
+    return this.connection.query(
+      `insert into ${this.table} (departureDate, returnDate, user_id, car_id, agency_id) values (?,?,?,?,?)`,
       [
         carRented.departureDate,
         carRented.returnDate,
@@ -28,29 +26,6 @@ class RentalManager extends AbstractManager {
       ]
     );
   }
-
-  // ADD a new car
-  insert(car) {
-    return this.connection.query(
-      `insert into ${this.table} (typeOfCar, brand, model, yearCar, photo, matriculation, kilometers, autonomy, gearbox, power, maxPlace, optionCar, locationCar, pricePerDay, agency_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        car.typeOfCar,
-        car.brand,
-        car.model,
-        car.yearCar,
-        car.photo,
-        car.matriculation,
-        car.kilometers,
-        car.autonomy,
-        car.gearbox,
-        car.power,
-        car.maxPlace,
-        car.optionCar,
-        car.locationCar,
-        car.pricePerDay,
-        car.agency_id,
-      ]
-    );
-  }
 }
+
 module.exports = RentalManager;
