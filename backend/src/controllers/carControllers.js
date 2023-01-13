@@ -55,6 +55,18 @@ const browseAllCarsByLocationAndDate = (req, res) => {
   } else res.sendStatus(400);
 };
 
+const browseCars = (req, res) => {
+  models.car
+    .findAll()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const browseAllCars = (req, res) => {
   models.car
     .findAllCars()
@@ -170,6 +182,7 @@ module.exports = {
   browseAllCarsByAgency,
   read,
   browseAllCarsByLocationAndDate,
+  browseCars,
   browseAllCars,
   browseCarRentedByAgency,
   findNonAvailableCarByAgency,

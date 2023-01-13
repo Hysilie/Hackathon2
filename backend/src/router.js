@@ -17,6 +17,7 @@ const {
   verifyPassword,
   verifyToken,
 } = require("./middlewares/auth");
+
 const { verifyEmail } = require("./middlewares/verifyEmail");
 
 // AGENCY ROUTES
@@ -43,6 +44,7 @@ router.get(
   "/carbylocationanddate",
   carControllers.browseAllCarsByLocationAndDate
 );
+router.get("/cars", carControllers.browseCars);
 router.get("/totalCars", carControllers.browseAllCars);
 router.get(
   "/totalCarsRentedByAgency/:id",

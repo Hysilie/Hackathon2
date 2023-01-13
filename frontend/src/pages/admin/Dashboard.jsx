@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AgencyCard from "../../components/admin/AgencyCard";
@@ -5,6 +6,26 @@ import circleplusicon from "../../assets/plus-circle.svg";
 
 function Dashboard() {
   const [agencies, setAgencies] = useState();
+  const [totalCars, setTotalCars] = useState();
+  const [rentedCars, setRentedCars] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/totalCars`)
+      .then((res) => res.json())
+      .then((result) => {
+        setTotalCars(result);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/allRentals`)
+      .then((res) => res.json())
+      .then((result) => {
+        setRentedCars(result);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:5000/agencies")
@@ -14,11 +35,17 @@ function Dashboard() {
       })
       .catch((err) => console.warn(err));
   }, []);
+
   const options = {
     year: "numeric",
     month: "long",
     day: "numeric",
   };
+
+  let totalRentedCars = 0;
+  for (let i = 0; i < rentedCars?.length; i++) {
+    if (rentedCars[i]) totalRentedCars++;
+  }
 
   return (
     <div>
@@ -28,13 +55,17 @@ function Dashboard() {
           <div className="text-center mt-12">
             <h2>
               <div className="flex flex-col">
-                <div className="text-main-yellow text-7xl">30</div>
+                <div className="text-main-yellow text-7xl">
+                  {totalRentedCars}
+                </div>
                 <div className="text-3xl">Rented</div>
                 <div className="text-xl">Vehicules</div>
               </div>
             </h2>
             <div className="flex flex-col">
-              <div className="text-main-yellow text-7xl mt-11">600</div>
+              <div className="text-main-yellow text-7xl mt-11">
+                {totalCars?.count}
+              </div>
               <div className="text-3xl">Global fleet</div>
             </div>
           </div>

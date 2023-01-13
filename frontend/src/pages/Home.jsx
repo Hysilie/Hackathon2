@@ -1,7 +1,7 @@
 import Header from "../components/user/Header";
 import electric from "../assets/electric-vehicles.svg";
-import local from "../assets/local-compagnies.svg";
-import spot from "../assets/spot-location.svg";
+import local from "../assets/local-agencies.svg";
+import charging from "../assets/charging-stations.svg";
 import SearchResults from "./user/SearchResults";
 
 export default function Home({
@@ -30,7 +30,7 @@ export default function Home({
           <div className="flex flex-row justify-center mt-12">
             <img src={electric} alt="" className="mx-14  h-48" />
             <img src={local} alt="" className="mx-14 h-48" />
-            <img src={spot} alt="" className="mx-14 h-48" />
+            <img src={charging} alt="" className="mx-14 h-48" />
           </div>
         </div>
       ) : (
