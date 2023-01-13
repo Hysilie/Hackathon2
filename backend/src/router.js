@@ -59,7 +59,6 @@ router.put("/updateCar/:id", carControllers.editCar);
 
 router.post(
   "/carPhoto",
-  verifyToken,
   upload.single("carPhoto"),
   fileControllers.renameCarPhoto,
   carControllers.updateCarPhoto

@@ -117,7 +117,7 @@ const findNonAvailableCarByAgency = (req, res) => {
 
 const addNewCar = (req, res) => {
   const car = req.body;
-  console.warn(car);
+  console.warn(req);
   models.car
     .insert(car)
     .then(([result]) => {
@@ -150,8 +150,9 @@ const editCar = (req, res) => {
 const updateCarPhoto = (req, res) => {
   const id = req.payload.sub;
   const { carPhoto } = req;
+  console.warn(carPhoto);
 
-  models.user
+  models.car
     .updateCarPhoto(id, carPhoto)
     .then(([result]) => {
       if (result.affectedRows === 0) res.sendStatus(404);
@@ -178,6 +179,7 @@ const deleteCar = (req, res) => {
       res.sendStatus(500);
     });
 };
+
 module.exports = {
   browseAllCarsByAgency,
   read,
