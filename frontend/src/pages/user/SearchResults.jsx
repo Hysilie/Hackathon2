@@ -3,6 +3,7 @@ import MapAgency from "../../components/map/MapAgency";
 import SearchResultCard from "../../components/user/SearchResultCard";
 
 function SearchResults({ cars }) {
+  console.warn("cars", cars);
   return (
     <div>
       <div className="flex lg:flex-row justify-between flex-col">

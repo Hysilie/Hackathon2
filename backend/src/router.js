@@ -38,6 +38,7 @@ router.post(
 
 // CAR ROUTES
 router.get("/carByAgency/:id", carControllers.browseAllCarsByAgency);
+router.get("/car/:id", verifyToken, carControllers.read);
 router.get(
   "/carbylocationanddate",
   carControllers.browseAllCarsByLocationAndDate
